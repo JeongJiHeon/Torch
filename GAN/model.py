@@ -10,6 +10,8 @@ def model(model):
            parameters
                DCGAN:
                    model = 'dcgan'
+                   
+                   return : Generator, Discriminator
            ========================================
     '''
     if model =='dcgan':
@@ -24,8 +26,13 @@ def optim(*args, **kwargs):
     '''
            ========================================
            parametrs
+               args :
+                   model which want training
                Adam Optimizer :
                    opt = 'adam', lr = 0.002, betas = (0.5, 0.999)
+                   
+           return
+               Optimizer List
            ========================================
     '''
     
@@ -37,6 +44,9 @@ def loss(loss):
            ========================================
            parametrs
                loss = BCELoss
+               
+           return
+               Loss Function
            ========================================
     '''
     if loss == 'BCELoss':
