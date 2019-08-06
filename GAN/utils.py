@@ -12,6 +12,15 @@ import matplotlib.pyplot as plot
 
 
 def make_weights_function(mean = 0 , sd = 0.02):
+    '''
+           ========================================
+           parametrs
+               mean = 0. sd = 0.02
+               
+           Conv = Normal(0, 0.02)
+           BatchNorm = Normal(1.0, 0.02)
+           ========================================
+    '''
     def weights_init(m):
         classname = m.__class__.__name__
         if classname.find('Conv') != -1:
@@ -24,6 +33,12 @@ def make_weights_function(mean = 0 , sd = 0.02):
 
 
 def save_model(model, **kwargs):
+    '''
+           ========================================
+           parametrs
+               name = string
+           ========================================
+    '''
     if kwargs.__contains__('name'):
         torch.save(model, kwargs['name'])
     else:
@@ -32,6 +47,12 @@ def save_model(model, **kwargs):
 
     
 def load_model(model, weights_init = make_weights_function(), **kwargs):
+    '''
+           ========================================
+           parametrs
+               name = string
+           ========================================
+    '''
     if kwargs.__contains__('name'):
         name = kwargs['name']
     else:
@@ -65,7 +86,16 @@ def ShowPlot(List1, List2, xlabel=False, ylabel=False, title=False):
     
     
 def data_loader(dataroot, batch_size = 128, image_size = 64, num_workers = 2 , drop_last = True, shuffle = True, **kwargs):
-    
+    '''
+           ========================================
+           parametrs
+               dataroot = data path , batch_size = 128, image_size = 64, num_workers = 2, drop_last = True, shuffle = True,
+               transform = torchvision.transform.Compose([ "ransforms module" ])
+           ========================================
+
+
+    '''
+
     if kwargs.__contains__('transform'):
         dataset = dset.ImageFolder(root = dataroot, transform =  kwargs['transform'])
     else:
