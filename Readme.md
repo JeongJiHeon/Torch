@@ -13,5 +13,5 @@
 
 #### DCGAN
 
-![스크린샷 2019-08-06 17.33.41](/Users/mac/Desktop/스크린샷 2019-08-06 17.33.41.png)
+![DCGAN](/Users/mac/Desktop/스크린샷 2019-08-06 17.33.41.png)
 
