@@ -39,7 +39,7 @@ def save_model(model, **kwargs):
                name = string
            ========================================
     '''
-    if kwargs.__contains__('name'):
+    if 'name' in kwags:
         torch.save(model, kwargs['name'])
     else:
         torch.save(model, model.__class__.__name__ + '.pkl')
@@ -53,7 +53,7 @@ def load_model(model, weights_init = make_weights_function(), **kwargs):
                name = string
            ========================================
     '''
-    if kwargs.__contains__('name'):
+    if 'name' in kwags:
         name = kwargs['name']
     else:
         name = model.__class__.__name__ + '.pkl'
@@ -92,11 +92,9 @@ def data_loader(dataroot, batch_size = 128, image_size = 64, num_workers = 2 , d
                dataroot = data path , batch_size = 128, image_size = 64, num_workers = 2, drop_last = True, shuffle = True,
                transform = torchvision.transform.Compose([ "ransforms module" ])
            ========================================
-
-
     '''
 
-    if kwargs.__contains__('transform'):
+    if 'transform' in kwargs:
         dataset = dset.ImageFolder(root = dataroot, transform =  kwargs['transform'])
     else:
         dataset = dset.ImageFolder(root = dataroot, transform =  transforms.Compose( [transforms.Resize(image_size), transforms.CenterCrop(image_size), transforms.ToTensor() ]))
