@@ -44,16 +44,11 @@ def main():
             err_D_fake = criterion(D(G(latent)).view(-1), label_fake)
             err_D_real.backward(retain_graph = True)
             err_D_fake.backward()
-            print("[%d/%d]" % (i, len(dataloader)), end = ' ')
 
-
-            print("real : %.4f" % err_D_real.item(), end = '   ')
-            print("fake : %.4f" % err_D_fake.item(), end = '   ')
             optim_D.step()
             
             optim_G.zero_grad()
             err_G = criterion(D(G(latent)).view(-1), label_real)
-            print("G : %.4f" % err_G.item())
 
 
             err_G.backward()
