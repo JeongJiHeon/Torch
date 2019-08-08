@@ -77,7 +77,7 @@ def load_model(model, weights_init = weights_init, **kwargs):
 def imshow(image):
     plt.figure(figsize=(8,8))
     plt.title("Training Image")
-    plt.imshow(np.transpose(vutils.make_grid(image[0][:64], padding=2, normalize=True).cpu(),(1,2,0)))
+    plt.imshow(np.transpose(vutils.make_grid(torch.Tensor(image)[:64], padding=2, normalize=True).cpu(),(1,2,0)))
     
     
 def ShowPlot(List1, List2, xlabel=False, ylabel=False, title=False):

@@ -1,6 +1,8 @@
 import torch
 import model
 import utils
+import numpy as np
+import os
 
 dataroot = '/root/Deeplearning'
 #dataroot = '/Users/mac/python/dataset'
@@ -29,8 +31,10 @@ def main():
     
     dataloader = utils.data_loader(dataroot, batch_size = batch_size, image_size = image_size, num_workers = workers)
     
+    fix_latent = torch.randn(64, 100, 1, 1)
     label_real = torch.full((batch_size,), real_label)
     label_fake = torch.full((batch_size,), fake_label)
+    img_list = []
     for epoch in range(EPOCH):
         for i, data in enumerate(dataloader):
             latent = torch.randn(batch_size, 100, 1, 1)
@@ -56,14 +60,24 @@ def main():
             
             optim_G.step()
             
+            
+            if i % 50 == 0:
+                print("[%d/%d]" % (i, len(dataloader)), end = ' ')
+                print("real : %.4f" % err_D_real.item(), end = '   ')
+                print("fake : %.4f" % err_D_fake.item(), end = '   ')
+                print("G : %.4f" % err_G.item())
+                
+                utils.save_model(G)
+                utils.save_model(D)
+            if i % 500 == 0 :
+                if 'imglist.npy' in os.listdir():
+                    img_list = list(np.load('imglist.npy'))
+                img_list.append(G(fix_latent).detach().numpy())
+                np.save('imglist', img_list)
+                    
+                
+                
 
-#            print("G Loss : ", err_G.detach().numpy(), end = ' ')
-#            print("D Loss : ", err_D.detach().numpy())
-            utils.save_model(G)
-            utils.save_model(D)
-                
-                
-    
     
 if __name__=='__main__':
     main()
