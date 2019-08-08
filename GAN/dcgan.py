@@ -1,23 +1,5 @@
 import torch
-import torchvision
-import torch.utils as utils
 import torch.nn as nn
-import torchvision.datasets as dset
-import torchvision.transforms as transforms
-import torchvision.utils as vutils
-import matplotlib.pyplot as plt
-import torch.optim as optim
-import torchvision.utils as vutils
-import numpy as np
-import os
-
-
-EPOCHS = 5
-batch_size = 128
-fix_latent = torch.randn(64, 100, 1, 1)
-dataroot = '/Users/mac/python/dataset'
-
-
 
 
 
@@ -45,23 +27,23 @@ class Generator(nn.Module):
     def __init__(self):
         super(Generator, self).__init__()
         self.G = nn.Sequential(
-            nn.ConvTranspose2d(in_channels = 100, out_channels = 512, kernel_size = 4, stride = 1, padding = 0),
+            nn.ConvTranspose2d(in_channels = 100, out_channels = 512, kernel_size = 4, stride = 1, padding = 0, bias = False),
             nn.BatchNorm2d(512),
             nn.ReLU(True),
             
-            nn.ConvTranspose2d(in_channels = 512, out_channels = 256, kernel_size = 4, stride = 2, padding = 1),
+            nn.ConvTranspose2d(in_channels = 512, out_channels = 256, kernel_size = 4, stride = 2, padding = 1, bias = False),
             nn.BatchNorm2d(256),
             nn.ReLU(True),
             
-            nn.ConvTranspose2d(in_channels = 256, out_channels = 128, kernel_size = 4, stride = 2, padding = 1),
+            nn.ConvTranspose2d(in_channels = 256, out_channels = 128, kernel_size = 4, stride = 2, padding = 1, bias = False),
             nn.BatchNorm2d(128),
             nn.ReLU(True),
             
-            nn.ConvTranspose2d(in_channels = 128, out_channels = 64, kernel_size = 4, stride = 2, padding = 1),
+            nn.ConvTranspose2d(in_channels = 128, out_channels = 64, kernel_size = 4, stride = 2, padding = 1, bias = False),
             nn.BatchNorm2d(64),
             nn.ReLU(True),
             
-            nn.ConvTranspose2d(in_channels = 64, out_channels = 3, kernel_size = 4, stride = 2, padding = 1),
+            nn.ConvTranspose2d(in_channels = 64, out_channels = 3, kernel_size = 4, stride = 2, padding = 1, bias = False),
             nn.Tanh()
         )
         
@@ -89,22 +71,22 @@ class Discriminator(nn.Module):
     def __init__(self):
         super(Discriminator, self).__init__()
         self.D = nn.Sequential(
-            nn.Conv2d(in_channels = 3, out_channels = 64, kernel_size = 4, stride = 2, padding = 1),
+            nn.Conv2d(in_channels = 3, out_channels = 64, kernel_size = 4, stride = 2, padding = 1, bias = False),
             nn.LeakyReLU(0.2, inplace = True),
             
-            nn.Conv2d(in_channels = 64, out_channels = 128, kernel_size = 4, stride = 2, padding = 1),
+            nn.Conv2d(in_channels = 64, out_channels = 128, kernel_size = 4, stride = 2, padding = 1, bias = False),
             nn.BatchNorm2d(128),
             nn.LeakyReLU(0.2, inplace = True),
             
-            nn.Conv2d(in_channels = 128, out_channels = 256, kernel_size = 4, stride = 2, padding = 1),
+            nn.Conv2d(in_channels = 128, out_channels = 256, kernel_size = 4, stride = 2, padding = 1, bias = False),
             nn.BatchNorm2d(256),
             nn.LeakyReLU(0.2, inplace = True),
             
-            nn.Conv2d(in_channels = 256, out_channels = 512, kernel_size = 4, stride = 2, padding = 1),
+            nn.Conv2d(in_channels = 256, out_channels = 512, kernel_size = 4, stride = 2, padding = 1, bias = False),
             nn.BatchNorm2d(512),
             nn.LeakyReLU(0.2, inplace = True),
             
-            nn.Conv2d(in_channels = 512, out_channels = 1, kernel_size = 4, stride = 1, padding = 0),
+            nn.Conv2d(in_channels = 512, out_channels = 1, kernel_size = 4, stride = 1, padding = 0, bias = False),
             nn.Sigmoid()
             
         )

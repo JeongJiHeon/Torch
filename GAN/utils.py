@@ -8,7 +8,7 @@ import torchvision.utils as vutils
 
 import os
 import numpy as np
-import matplotlib.pyplot as plot
+import matplotlib.pyplot as plt
 
 
 def make_weights_function(mean = 0 , sd = 0.02):
@@ -32,6 +32,15 @@ def make_weights_function(mean = 0 , sd = 0.02):
     return weights_init
 
 
+
+def weights_init(m):
+    classname = m.__class__.__name__
+    if classname.find('Conv') != -1:
+        nn.init.normal_(m.weight.data, 0, 0.02)
+    elif classname.find('BatchNorm') != -1:
+        nn.init.normal_(m.weight.data, 1.0, 0.02)
+        nn.init.constant_(m.bias.data, 0)
+
 def save_model(model, **kwargs):
     '''
            ========================================
@@ -39,21 +48,21 @@ def save_model(model, **kwargs):
                name = string
            ========================================
     '''
-    if 'name' in kwags:
+    if 'name' in kwargs:
         torch.save(model, kwargs['name'])
     else:
         torch.save(model, model.__class__.__name__ + '.pkl')
     print(model.__class__.__name__ +" save !")
 
     
-def load_model(model, weights_init = make_weights_function(), **kwargs):
+def load_model(model, weights_init = weights_init, **kwargs):
     '''
            ========================================
            parametrs
                name = string
            ========================================
     '''
-    if 'name' in kwags:
+    if 'name' in kwargs:
         name = kwargs['name']
     else:
         name = model.__class__.__name__ + '.pkl'
@@ -97,7 +106,12 @@ def data_loader(dataroot, batch_size = 128, image_size = 64, num_workers = 2 , d
     if 'transform' in kwargs:
         dataset = dset.ImageFolder(root = dataroot, transform =  kwargs['transform'])
     else:
-        dataset = dset.ImageFolder(root = dataroot, transform =  transforms.Compose( [transforms.Resize(image_size), transforms.CenterCrop(image_size), transforms.ToTensor() ]))
+        dataset = dset.ImageFolder(root = dataroot, transform =  transforms.Compose( 
+            [transforms.Resize(image_size), 
+             transforms.CenterCrop(image_size), 
+             transforms.ToTensor(), 
+             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+        ))
 
         
     dataloader = utils.data.DataLoader(dataset, batch_size = batch_size, num_workers = num_workers, drop_last = drop_last, shuffle = shuffle)
