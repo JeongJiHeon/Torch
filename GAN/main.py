@@ -20,8 +20,8 @@ def main():
     Generator, Discriminator = model.model('dcgan')
     G = Generator()
     D = Discriminator()
-    utils.load_model(G)
-    utils.load_model(D)
+    G = utils.load_model(G)
+    D = utils.load_model(D)
     
     optim_G = torch.optim.Adam(G.parameters(), lr = 0.0002, betas=(0.5,0.999))
     optim_D = torch.optim.Adam(D.parameters(), lr = 0.0002, betas=(0.5,0.999))

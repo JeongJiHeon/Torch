@@ -66,6 +66,7 @@ def load_model(model, weights_init = weights_init, **kwargs):
         name = kwargs['name']
     else:
         name = model.__class__.__name__ + '.pkl'
+    print(name)
         
     if name in os.listdir():
         print(model.__class__.__name__ +" restore !")
