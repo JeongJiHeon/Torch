@@ -32,15 +32,6 @@ def make_weights_function(mean = 0 , sd = 0.02):
     return weights_init
 
 
-
-def weights_init(m):
-    classname = m.__class__.__name__
-    if classname.find('Conv') != -1:
-        nn.init.normal_(m.weight.data, 0, 0.02)
-    elif classname.find('BatchNorm') != -1:
-        nn.init.normal_(m.weight.data, 1.0, 0.02)
-        nn.init.constant_(m.bias.data, 0)
-
 def save_model(model, **kwargs):
     '''
            ========================================
@@ -55,7 +46,7 @@ def save_model(model, **kwargs):
     print(model.__class__.__name__ +" save !")
 
     
-def load_model(model, weights_init = weights_init, **kwargs):
+def load_model(model, weights_init = make_weights_function(), **kwargs):
     '''
            ========================================
            parametrs
@@ -65,14 +56,11 @@ def load_model(model, weights_init = weights_init, **kwargs):
     if 'name' in kwargs:
         name = kwargs['name']
     else:
-        name = model.__class__.__name__ + '.pkl'
-    print(name)
-        
+        name = model.__class__.__name__ + '.pkl'        
     if name in os.listdir():
         print(model.__class__.__name__ +" restore !")
         return torch.load(name)
     else:
-        
         return model.apply(weights_init)
     
 def imshow(image):
