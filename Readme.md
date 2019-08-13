@@ -12,6 +12,10 @@
 #### DCGAN
 
 ![DCGAN](https://github.com/JeongJiHeon/Torch/blob/master/DCGAN.png)
+
+
+
+#### Conditional GAN
 ![cGAN](https://github.com/JeongJiHeon/Torch/blob/master/cgan.png)
 
 
