@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#data 셋 무시
+data/
+
 # C extensions
 *.so
 
