@@ -13,8 +13,9 @@
 
 <div>
 
-![DCGAN](https://github.com/JeongJiHeon/Torch/blob/master/DCGAN.png)
-![DCGAN](https://github.com/JeongJiHeon/Torch/blob/master/dcgan.gif)
+<img src="https://github.com/JeongJiHeon/Torch/blob/master/DCGAN.png">
+<img src="https://github.com/JeongJiHeon/Torch/blob/master/dcgan.gif">
+
 
 
 </div>
