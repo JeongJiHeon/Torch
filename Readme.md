@@ -17,6 +17,7 @@
 
 #### Conditional GAN
 ![cGAN](https://github.com/JeongJiHeon/Torch/blob/master/cgan.png)
+![cGAN](https://github.com/JeongJiHeon/Torch/blob/master/cgan.gif)
 
 
 
