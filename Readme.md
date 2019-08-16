@@ -12,8 +12,11 @@
 #### DCGAN
 
 <div>
-![DCGAN](https://github.com/JeongJiHeon/Torch/blob/master/DCGAN.png){: width="100" height="100"}
-![DCGAN](https://github.com/JeongJiHeon/Torch/blob/master/dcgan.gif){: width="100" height="100"}
+
+![DCGAN](https://github.com/JeongJiHeon/Torch/blob/master/DCGAN.png)
+![DCGAN](https://github.com/JeongJiHeon/Torch/blob/master/dcgan.gif)
+
+
 </div>
 
 
