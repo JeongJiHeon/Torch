@@ -17,13 +17,19 @@
 <img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/dcgan.gif">
 
 
-
 </div>
 
 
 #### Conditional GAN
-![cGAN](https://github.com/JeongJiHeon/Torch/blob/master/cgan.png)
-![cGAN](https://github.com/JeongJiHeon/Torch/blob/master/cgan.gif)
+
+<div>
+
+<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/cgan.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/cgan.gif">
+
+
+</div>
+
 
 
 
