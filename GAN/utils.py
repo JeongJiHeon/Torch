@@ -11,31 +11,53 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def dataloader(data = 'mnist', root = '/data', train = True, download = True, size = 32, transform = True, batch_size = 128, shuffle = True, num_workers = 2):
+def dataset(data = 'mnist', root = 'data', train = True, download = True, size = 28, transform = True, 
+            batch_size = 128, shuffle = True, num_workers = 2, drop_last = True):
+    '''
+           ========================================
+           parameters
+               data(str) = 'mnist' (default) or 'cifar10' 
+               root(str) = Download directory or dataset directory
+               train(bool) = True(default)
+               download(bool) = True(default)
+               size(int) = 28(default)
+               transform(torchvision.transforms.Compose) = Resize(size, size), ToTensor()
+               batch_size(int) = 128(default)
+               shuffle(bool) = True(default)
+               num_workers(int) = 2(default)
+           ========================================
+    '''
     if transform:
         _transform = transforms.Compose([
-                                                transforms.Resize(size,size),
-                                                transforms.ToTensor(),
-                                                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.5], std=[0.5])
+                                                ])
     else:
         _transform = transform
     
+    if not root in os.listdir():
+        os.mkdir(root)
+    root = os.getcwd()+ '/' + root
+
+
+        
+    
     if data == 'mnist':
-        trainset = torchvision.datasets.MNIST(root= '/data', train=True, transform=_transform, download=True)
+        trainset = torchvision.datasets.MNIST(root= root, train=True, transform=_transform, download=True)
     elif data == 'cifar10':
-        trainset = torchvision.datasets.CIFAR10(root= '/data', train=True, transform=_transform, download=True)
+        trainset = torchvision.datasets.CIFAR10(root= root, train=True, transform=_transform, download=True)
 
 
     
     
-    trainloader = torch.utils.data.DataLoader(trainset, batch_size = batch_size, shuffle = shuffle, num_workers = num_workers)
+    trainloader = torch.utils.data.DataLoader(trainset, batch_size = batch_size, shuffle = shuffle, num_workers = num_workers, drop_last = drop_last)
     return trainloader
 
 
 def make_weights_function(mean = 0 , sd = 0.02):
     '''
            ========================================
-           parametrs
+           parameters
                mean = 0. sd = 0.02
                
            Conv = Normal(0, 0.02)
@@ -56,7 +78,7 @@ def make_weights_function(mean = 0 , sd = 0.02):
 def save_model(model, **kwargs):
     '''
            ========================================
-           parametrs
+           parameters
                name = string
            ========================================
     '''
@@ -70,7 +92,7 @@ def save_model(model, **kwargs):
 def load_model(model, weights_init = make_weights_function(), **kwargs):
     '''
            ========================================
-           parametrs
+           parameters
                name = string
            ========================================
     '''
@@ -107,7 +129,7 @@ def ShowPlot(List1, List2, xlabel=False, ylabel=False, title=False):
 def data_loader(dataroot, batch_size = 128, image_size = 64, num_workers = 2 , drop_last = True, shuffle = True, **kwargs):
     '''
            ========================================
-           parametrs
+           parameters
                dataroot = data path , batch_size = 128, image_size = 64, num_workers = 2, drop_last = True, shuffle = True,
                transform = torchvision.transform.Compose([ "ransforms module" ])
            ========================================

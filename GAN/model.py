@@ -1,6 +1,6 @@
 import torch
 import dcgan
-
+import cgan
 
 
 
@@ -18,7 +18,11 @@ def model(model):
         Generator = dcgan.Generator
         Discriminator = dcgan.Discriminator
 
-    return Generator, Discriminator
+    if model == 'cgan':
+        Generator = cgan.Generator
+        Discriminator = cGAN.Discriminator
+        
+    return Generator, cgan
 
 
 
