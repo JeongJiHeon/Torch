@@ -13,8 +13,8 @@
 
 <div>
 
-<img width="150" src="https://github.com/JeongJiHeon/Torch/blob/master/DCGAN.png">
-<img width="150" src="https://github.com/JeongJiHeon/Torch/blob/master/dcgan.gif">
+<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/DCGAN.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/dcgan.gif">
 
 
 
