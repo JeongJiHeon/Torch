@@ -12,6 +12,7 @@
 #### DCGAN
 
 ![DCGAN](https://github.com/JeongJiHeon/Torch/blob/master/DCGAN.png)
+![DCGAN](https://github.com/JeongJiHeon/Torch/blob/master/dcgan.gif)
 
 
 
