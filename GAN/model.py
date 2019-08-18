@@ -20,9 +20,9 @@ def model(model):
 
     if model == 'cgan':
         Generator = cgan.Generator
-        Discriminator = cGAN.Discriminator
-        
-    return Generator, cgan
+        Discriminator = cgan.Discriminator
+    
+    return Generator, Discriminator
 
 
 

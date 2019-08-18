@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-import cGAN
+import cgan
 import utils
 import torchvision
 import model
