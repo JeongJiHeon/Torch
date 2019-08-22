@@ -1,7 +1,7 @@
 import torch
 import dcgan
 import cgan
-
+import pix2pix
 
 
 def model(model):
@@ -18,9 +18,13 @@ def model(model):
         Generator = dcgan.Generator
         Discriminator = dcgan.Discriminator
 
-    if model == 'cgan':
+    elif model == 'cgan':
         Generator = cgan.Generator
         Discriminator = cgan.Discriminator
+    
+    elif model == 'pix2pix':
+        Generator = pix2pix.Generator
+        Discriminator = pix2pix.Discriminator
     
     return Generator, Discriminator
 
