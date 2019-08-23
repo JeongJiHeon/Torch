@@ -31,7 +31,7 @@
 </div>
 
 
-#### Conditional GAN
+#### pix2pix
 
 <div>
 
