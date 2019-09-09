@@ -45,6 +45,10 @@
 
 <div>
 
+<img width="200" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/one.png">
+<img width="400" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/noise.png">
+<img width="600" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/output.png">
+
 <img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/VAE.gif">
 
 
