@@ -9,6 +9,7 @@ import torchvision
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+import imageio
 
 
 def dataset(data = 'mnist', root = 'data', train = True, download = True, size = 28, transform = True, 
@@ -170,13 +171,13 @@ def saveimage(imglist, path, figsize = (6,6), x=8, y=8, step_num = 10):
         plt.show()
         plt.close()
 
+def makegif(imglist, path, name,  num = 1):
+    images = []
+    for e in range(len(imglist)):
+        img_name = path + str(e * num) + '.png'
+        images.append(imageio.imread(img_name))
+    imageio.mimsave(name, images, fps = 5)
 
-
-    
-    
-    
-    
-    
     
     
     
