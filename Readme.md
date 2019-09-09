@@ -45,9 +45,9 @@
 
 <div>
 
-<img width="300" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/vae_real.png">
-<img width="300" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/vae_noise.png">
-<img width="300" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/vae_output.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/vae_real.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/vae_noise.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/vae_output.png">
 
 <img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/VAE.gif">
 
