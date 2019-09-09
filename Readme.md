@@ -14,7 +14,7 @@
 
 <div>
 
-<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/DCGAN.png">
+<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/dcgan.png">
 <img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/dcgan.gif">
 
 
