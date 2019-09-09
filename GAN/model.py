@@ -2,7 +2,7 @@ import torch
 import dcgan
 import cgan
 import pix2pix
-
+import VAE
 
 def model(model):
     '''
@@ -12,50 +12,34 @@ def model(model):
                    model = 'dcgan'
                    
                    return : Generator, Discriminator
+                   
+               CGAN:
+                   model = 'cgan'
+                   
+                   return : Generator, Discriminator
+                   
+               pix2pix:
+                   model = 'pix2pix'
+                   
+                   return : Generator, Discriminaotr
+                   
+               Variational AutoEncoder:
+                   model = 'vae'
+                   
+                   return : VAE
            ========================================
     '''
     if model =='dcgan':
-        Generator = dcgan.Generator
-        Discriminator = dcgan.Discriminator
+        return dcgan.Generator, dcgan.Discriminator
 
     elif model == 'cgan':
-        Generator = cgan.Generator
-        Discriminator = cgan.Discriminator
+        return cgan.Generator, cgan.Discriminator
     
     elif model == 'pix2pix':
-        Generator = pix2pix.Generator
-        Discriminator = pix2pix.Discriminator
-    
-    return Generator, Discriminator
+        return pix2pix.Generator, pix2pix.Discriminator
+        
+    elif model == 'VAE':
+        return VAE.Varational_AutoEncoder
 
 
 
-def optim(*args, **kwargs):
-    '''
-           ========================================
-           parametrs
-               args :
-                   model which want training
-               Adam Optimizer :
-                   opt = 'adam', lr = 0.002, betas = (0.5, 0.999)
-                   
-           return
-               Optimizer List
-           ========================================
-    '''
-    
-    if kwargs['opt'] == 'adam':
-        return [torch.optim.Adam(m.parameters(), lr = kwargs['lr'], betas=kwargs['betas']) for m in args]
-       
-def loss(loss):
-    '''
-           ========================================
-           parametrs
-               loss = BCELoss
-               
-           return
-               Loss Function
-           ========================================
-    '''
-    if loss == 'BCELoss':
-        return torch.nn.BCELoss()

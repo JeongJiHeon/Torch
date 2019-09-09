@@ -151,3 +151,38 @@ def data_loader(dataroot, batch_size = 128, image_size = 64, num_workers = 2 , d
 
 
     return dataloader
+
+def saveimage(imglist, path, figsize = (6,6), x=8, y=8, step_num = 10):
+    for num in range(len(imglist)):
+        if num % step_num != 0:
+            continue
+        path =path.format(num)
+
+        fig, ax = plt.subplots(x, y, figsize=figsize)
+        num_img = imglist[num]
+        for i in range(len(num_img)):
+            ax[int(i/8), i%8].imshow(num_img[i].reshape(28,28), cmap='gray')
+            ax[int(i/8), i%8].get_xaxis().set_visible(False)
+            ax[int(i/8), i%8].get_yaxis().set_visible(False)
+        label = 'Epoch {0}'.format(num)
+        fig.text(0.5, 0.04, label, ha='center')
+        plt.savefig(path)
+        plt.show()
+        plt.close()
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
