@@ -2,7 +2,6 @@ import torch
 import dcgan
 import cgan
 import pix2pix
-import VAE
 import cyclegan
 
 def model(model):
@@ -24,11 +23,6 @@ def model(model):
                    
                    return : Generator, Discriminaotr
                    
-               Variational AutoEncoder:
-                   model = 'vae'
-                   
-                   return : VAE
-                   
                CycleGAN:
                    model = 'cyclegan'
                    
@@ -43,9 +37,6 @@ def model(model):
     
     elif model == 'pix2pix':
         return pix2pix.Generator, pix2pix.Discriminator
-        
-    elif model == 'VAE':
-        return VAE.Varational_AutoEncoder
     
     elif model == 'cyclegan':
         return cyclegan.Generator, cyclegan.Discriminator
