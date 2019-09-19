@@ -8,14 +8,14 @@ import utils
 class LinearBlock(nn.Module):
     def __init__(self, in_dim, out_dim, norm_layer, padding_mode, activation_fn, bias = False, leaky_scope = 0.2, padding = 3):
         '''
-        ==============================================================
+        ======================================================================
         
-                                                Make LinearBlock
+                              Make LinearBlock
                                                 
-        ┌────┐         ┌────┐         ┌────────┐       ┌──────┐      
-        │Padding│  ->   │  Linear  │  ->   │ Normalization   │  -> │ Activation   │      
-        └────┘         └────┘         └────────┘       └──────┘       
-        ──────────────────────────────────────
+        ┌─────────┐      ┌────────┐      ┌───────────────┐      ┌────────────┐      
+        │ Padding │  ->  │ Linear │  ->  │ Normalization │  ->  │ Activation │      
+        └─────────┘      └────────┘      └───────────────┘      └────────────┘       
+        ──────────────────────────────────────────────────────────────────────
         
         in_dim = Input Dimension ( int )
         out_dim = Output Dimension ( int )
@@ -36,7 +36,7 @@ class LinearBlock(nn.Module):
             - 'Tanh'           : Tanh Function
             - 'LeakyReLU' : Leaky ReLU Function ( optional ( leaky_scope = 0.2 ) )
         
-        ==========================================================
+        ======================================================================
         '''
         super(LinearBlock, self).__init__()
         model = []
@@ -79,14 +79,14 @@ class LinearBlock(nn.Module):
 class ConvBlock(nn.Module):
     def __init__(self, in_channels, out_channels, norm_layer, padding_mode, activation_fn, conv, kernel_size=3, stride = 1, padding = 1, bias = False, leaky_scope = 0.2):
         '''
-        ===============================================================
+        ============================================================================
         
-                                                Make ConvBlock
+                                  Make ConvBlock
 
-        ┌────┐         ┌────┐         ┌────────┐       ┌──────┐ 
-        │Padding│  ->   │   Conv   │  ->   │ Normalization   │  -> │ Activation   │
-        └────┘         └────┘         └────────┘       └──────┘ 
-         ──────────────────────────────────────
+        ┌─────────┐      ┌──────┐      ┌───────────────┐      ┌────────────┐ 
+        │ Padding │  ->  │ Conv │  ->  │ Normalization │  ->  │ Activation │
+        └─────────┘      └──────┘      └───────────────┘      └────────────┘ 
+        ────────────────────────────────────────────────────────────────────────────
 
 
         
@@ -162,17 +162,17 @@ class ConvBlock(nn.Module):
 class ResidualBlock(nn.Module):
     def __init__(self, dim, padding_mode,  norm_layer, activation_fn, kernel_size = 3, stride = 1, padding = 1, leaky_scope = 0.2):
         '''
-        =======================================================================
+        ================================================================================
         
-                                                Make ResidualBlock
+                                             Make ResidualBlock
 
-        ┌────┐         ┌────┐         ┌────────┐       ┌──────┐ 
-        │Padding│  ->   │   Conv   │  ->   │ Normalization   │  -> │ Activation   │ ->
-        └────┘         └────┘         └────────┘       └──────┘ 
-        ┌────┐         ┌────┐         ┌────────┐       ┌──────┐ 
-        │Padding│  ->   │   Conv   │  ->   │ Normalization   │  -> │ Activation   │  + Input
-        └────┘         └────┘         └────────┘       └──────┘ 
-       ──────────────────────────────────────────
+        ┌─────────┐      ┌──────┐      ┌───────────────┐      ┌────────────┐ 
+        │ Padding │  ->  │ Conv │  ->  │ Normalization │  ->  │ Activation │ ->
+        └─────────┘      └──────┘      └───────────────┘      └────────────┘ 
+        ┌─────────┐      ┌──────┐      ┌───────────────┐      ┌────────────┐   ┌───────┐ 
+        │ Padding │  ->  │ Conv │  ->  │ Normalization │  ->  │ Activation │ + │ INPUT │
+        └─────────┘      └──────┘      └───────────────┘      └────────────┘   └───────┘
+       ─────────────────────────────────────────────────────────────────────────────────
 
 
         in_channels = Input Channels ( int )
@@ -197,7 +197,7 @@ class ResidualBlock(nn.Module):
             - 'Tanh'           : Tanh Function
             - 'LeakyReLU' : Leaky ReLU Function ( optional ( leaky_scope = 0.2 ) )
         
-        =======================================================================
+        ================================================================================
         '''
         
         super(ResidualBlock, self).__init__()
