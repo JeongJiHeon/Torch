@@ -1,13 +1,11 @@
 
+# Generative Model
 
-
-# GAN
-
+## - generative adversarial network
 * [GAN][https://arxiv.org/pdf/1406.2661.pdf]
 * [DCGAN][https://arxiv.org/pdf/1511.06434.pdf]
 * [cGAN][https://arxiv.org/pdf/1411.1784.pdf]
 * [pix2pix][https://arxiv.org/pdf/1611.07004.pdf]
-* [VAE][https://arxiv.org/pdf/1312.6114.pdf]
 * [CycleGAN][https://arxiv.org/pdf/1703.10593.pdf]
 
 
@@ -42,6 +40,18 @@
 
 </div>
 
+
+#### CycleGAN
+
+-학습중-
+
+
+
+
+## - AutoEncoder
+* [VAE][https://arxiv.org/pdf/1312.6114.pdf]
+
+
 #### VAE
 
 <div>
@@ -55,7 +65,3 @@
 
 </div>
 
-
-#### CycleGAN
-
--학습중-
