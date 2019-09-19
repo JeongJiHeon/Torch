@@ -3,6 +3,7 @@ import dcgan
 import cgan
 import pix2pix
 import VAE
+import cyclegan
 
 def model(model):
     '''
@@ -27,6 +28,11 @@ def model(model):
                    model = 'vae'
                    
                    return : VAE
+                   
+               CycleGAN:
+                   model = 'cyclegan'
+                   
+                   return Generator, Discriminator
            ========================================
     '''
     if model =='dcgan':
@@ -40,6 +46,9 @@ def model(model):
         
     elif model == 'VAE':
         return VAE.Varational_AutoEncoder
+    
+    elif model == 'cyclegan':
+        return cyclegan.Generator, cyclegan.Discriminator
 
 
 

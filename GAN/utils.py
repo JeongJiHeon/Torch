@@ -55,7 +55,7 @@ def dataset(data = 'mnist', root = 'data', train = True, download = True, size =
     return trainloader
 
 
-def make_weights_function(mean = 0 , sd = 0.02):
+def init_weight(net, init_type='normal', init_gain=0.02):
     '''
            ========================================
            parameters
@@ -65,15 +65,30 @@ def make_weights_function(mean = 0 , sd = 0.02):
            BatchNorm = Normal(1.0, 0.02)
            ========================================
     '''
-    def weights_init(m):
+    def init_func(m):  # define the initialization function
         classname = m.__class__.__name__
-        if classname.find('Conv') != -1:
-            nn.init.normal_(m.weight.data, mean, sd)
-        elif classname.find('BatchNorm') != -1:
-            nn.init.normal_(m.weight.data, 1.0, sd)
-            nn.init.constant_(m.bias.data, 0)
+        if hasattr(m, 'weight') and (classname.find('Conv') != -1 or classname.find('Linear') != -1):
+            if init_type == 'normal':
+                init.normal_(m.weight.data, 0.0, init_gain)
+            elif init_type == 'xavier':
+                init.xavier_normal_(m.weight.data, gain=init_gain)
+            elif init_type == 'kaiming':
+                init.kaiming_normal_(m.weight.data, a=0, mode='fan_in')
+            elif init_type == 'orthogonal':
+                init.orthogonal_(m.weight.data, gain=init_gain)
+            else:
+                raise NotImplementedError('initialization method [%s] is not implemented' % init_type)
+                
+            if hasattr(m, 'bias') and m.bias is not None:
+                init.constant_(m.bias.data, 0.0)
+        elif classname.find('BatchNorm2d') != -1:  # BatchNorm Layer's weight is not a matrix; only normal distribution applies.
+            init.normal_(m.weight.data, 1.0, init_gain)
+            init.constant_(m.bias.data, 0.0)
+        elif classname.find('InstanceNorm2d') != -1:  # InstanceNorm Layer's weight is not a matrix; only normal distribution applies.
+            init.normal_(m.weight.data, 1.0, init_gain)
+            init.constant_(m.bias.data, 0.0)
         
-    return weights_init
+    return init_func(net)
 
 
 def save_model(model, **kwargs):
@@ -90,7 +105,7 @@ def save_model(model, **kwargs):
     print(model.__class__.__name__ +" save !")
 
     
-def load_model(model, weights_init = make_weights_function(), **kwargs):
+def load_model(model, **kwargs):
     '''
            ========================================
            parameters
@@ -105,7 +120,7 @@ def load_model(model, weights_init = make_weights_function(), **kwargs):
         print(model.__class__.__name__ +" restore !")
         return torch.load(name)
     else:
-        return model.apply(weights_init)
+        return model
     
 def imshow(image):
     plt.figure(figsize=(8,8))
