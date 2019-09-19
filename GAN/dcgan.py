@@ -1,51 +1,47 @@
 import torch
 import torch.nn as nn
-
+from layer import *
 
 
 
 
 class Generator(nn.Module):
-    """
-    -`Generator (UPSAMPLING)`
-        - `ConvT Layer 1 - `
-            - input size = (BatchSize , 100, 1)
-            - output size = (BatchSize, 512, 4, 4)
-        - `ConvT Layer 2 - `
-            - input size = (BatchSize , 512, 4, 4)
-            - output size = (BatchSize, 256, 8, 8)
-        - `ConvT Layer 3 - `
-            - input size = (BatchSize , 256, 8, 8)
-            - output size = (BatchSize, 128, 16, 16)
-        - `ConvT Layer 4 - `
-            - input size = (BatchSize , 128, 16, 16)
-            - output size = (BatchSize, 64, 32, 32)
-        - `ConvT Layer 5 - `
-            - input size = (BatchSize, 64, 32, 32)
-            - output size = (BatchSize, 3, 64, 64)
-    """
     def __init__(self):
         super(Generator, self).__init__()
-        self.G = nn.Sequential(
-            nn.ConvTranspose2d(in_channels = 100, out_channels = 512, kernel_size = 4, stride = 1, padding = 0, bias = False),
-            nn.BatchNorm2d(512),
-            nn.ReLU(True),
+        channel = 512
+        G = []
+        G.append(ConvBlock(in_channels = 100, out_channels = channel, norm_layer = 'batchnorm', padding_mode = 'None',
+                           activation_fn = 'ReLU', conv = 'convT',  kernel_size = 4, stride = 1, padding = 0, bias = False))
+        for i in range(3):
+            G.append(ConvBlock(in_channels = channel, out_channels = channel//2, norm_layer = 'batchnorm', padding_mode = 'None',
+                               activation_fn = 'ReLU', conv = 'convT', kernel_size = 4, stride = 1, padding = 1, bias = False))
+            channel //= channel
             
-            nn.ConvTranspose2d(in_channels = 512, out_channels = 256, kernel_size = 4, stride = 2, padding = 1, bias = False),
-            nn.BatchNorm2d(256),
-            nn.ReLU(True),
+        G.append(ConvBlock(in_channels = channel, out_channels = 3, norm_layer = 'None', padding_mode = 'None',
+                           activation_fn = 'Tanh', conv = 'convT', kernel_sie = 4, stride = 2, padding = 1, bias = False))
+        
+        self.G = nn.Sequential(*G)
+#         self.G = nn.Sequential(
+#             nn.ConvTranspose2d(in_channels = 100, out_channels = 512, kernel_size = 4, stride = 1, padding = 0, bias = False),
+#             nn.BatchNorm2d(512),
+#             nn.ReLU(True),
             
-            nn.ConvTranspose2d(in_channels = 256, out_channels = 128, kernel_size = 4, stride = 2, padding = 1, bias = False),
-            nn.BatchNorm2d(128),
-            nn.ReLU(True),
+#             nn.ConvTranspose2d(in_channels = 512, out_channels = 256, kernel_size = 4, stride = 2, padding = 1, bias = False),
+#             nn.BatchNorm2d(256),
+#             nn.ReLU(True),
             
-            nn.ConvTranspose2d(in_channels = 128, out_channels = 64, kernel_size = 4, stride = 2, padding = 1, bias = False),
-            nn.BatchNorm2d(64),
-            nn.ReLU(True),
+#             nn.ConvTranspose2d(in_channels = 256, out_channels = 128, kernel_size = 4, stride = 2, padding = 1, bias = False),
+#             nn.BatchNorm2d(128),
+#             nn.ReLU(True),
             
-            nn.ConvTranspose2d(in_channels = 64, out_channels = 3, kernel_size = 4, stride = 2, padding = 1, bias = False),
-            nn.Tanh()
-        )
+#             nn.ConvTranspose2d(in_channels = 128, out_channels = 64, kernel_size = 4, stride = 2, padding = 1, bias = False),
+#             nn.BatchNorm2d(64),
+#             nn.ReLU(True),
+            
+#             nn.ConvTranspose2d(in_channels = 64, out_channels = 3, kernel_size = 4, stride = 2, padding = 1, bias = False),
+#             nn.Tanh()
+#         )
+
         
     def forward(self, inputs):
         return self.G(inputs)
@@ -53,43 +49,40 @@ class Generator(nn.Module):
 
 
 class Discriminator(nn.Module):
-    """
-    -`Discriminator (DOWNSAMPLING)`
-        - `Conv Layer 1 - `
-            - input size = (BatchSize , 3, 64, 64)
-            - output size = (BatchSize, 64, 32, 32)
-        - `Conv Layer 2 - `
-            - input size = (BatchSize , 64, 32, 32)
-            - output size = (BatchSize, 128, 16, 16)
-        - `Conv Layer 3 - `
-            - input size = (BatchSize , 128, 16, 16)
-            - output size = (BatchSize, 256, 8, 8)
-        -`Conv Layer 4 - `
-            -input size = (BatchSize , 256, 8, 8)
-            -output size = (BatchSize, 1)
-    """
     def __init__(self):
         super(Discriminator, self).__init__()
-        self.D = nn.Sequential(
-            nn.Conv2d(in_channels = 3, out_channels = 64, kernel_size = 4, stride = 2, padding = 1, bias = False),
-            nn.LeakyReLU(0.2, inplace = True),
+        D = []
+        channel = 64
+        D.append(ConvBlock(in_channels = 3, out_channels = channel, norm_layer = 'None', padding_mode = 'None',
+                           activation_fn = 'LeakyReLU', conv = 'conv', kernel_size = 4, stride = 2, padding = 1, bias = False))
+        for i in range(3):
+            D.append(ConvBlock(in_channels = channel, out_channels = channel * 2, norm_layer = 'batchnorm', padding_mode = 'None',
+                               activation_fn = 'LeakyReLU', conv = 'conv', kernel_size = 4, stride = 2, padding = 1, bias = False))
+            channels *= 2
+        D.append(ConvBlock(in_channels = channel, out_channels = 1, norm_layer = 'None', padding_mode = 'None',
+                           activation_fn = 'Sigmoid', conv = 'conv', kernel_size = 4, stride = 1, padding = 0, bias = False))
+        self.D = nn.Sequential(*D)
+        
+#         self.D = nn.Sequential(
+#             nn.Conv2d(in_channels = 3, out_channels = 64, kernel_size = 4, stride = 2, padding = 1, bias = False),
+#             nn.LeakyReLU(0.2, inplace = True),
             
-            nn.Conv2d(in_channels = 64, out_channels = 128, kernel_size = 4, stride = 2, padding = 1, bias = False),
-            nn.BatchNorm2d(128),
-            nn.LeakyReLU(0.2, inplace = True),
+#             nn.Conv2d(in_channels = 64, out_channels = 128, kernel_size = 4, stride = 2, padding = 1, bias = False),
+#             nn.BatchNorm2d(128),
+#             nn.LeakyReLU(0.2, inplace = True),
             
-            nn.Conv2d(in_channels = 128, out_channels = 256, kernel_size = 4, stride = 2, padding = 1, bias = False),
-            nn.BatchNorm2d(256),
-            nn.LeakyReLU(0.2, inplace = True),
+#             nn.Conv2d(in_channels = 128, out_channels = 256, kernel_size = 4, stride = 2, padding = 1, bias = False),
+#             nn.BatchNorm2d(256),
+#             nn.LeakyReLU(0.2, inplace = True),
             
-            nn.Conv2d(in_channels = 256, out_channels = 512, kernel_size = 4, stride = 2, padding = 1, bias = False),
-            nn.BatchNorm2d(512),
-            nn.LeakyReLU(0.2, inplace = True),
+#             nn.Conv2d(in_channels = 256, out_channels = 512, kernel_size = 4, stride = 2, padding = 1, bias = False),
+#             nn.BatchNorm2d(512),
+#             nn.LeakyReLU(0.2, inplace = True),
             
-            nn.Conv2d(in_channels = 512, out_channels = 1, kernel_size = 4, stride = 1, padding = 0, bias = False),
-            nn.Sigmoid()
+#             nn.Conv2d(in_channels = 512, out_channels = 1, kernel_size = 4, stride = 1, padding = 0, bias = False),
+#             nn.Sigmoid()
             
-        )
+#         )
         
     def forward(self, inputs):
         return self.D(inputs)
