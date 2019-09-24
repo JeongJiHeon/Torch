@@ -15,10 +15,10 @@ class Generator(nn.Module):
         for i in range(3):
             G.append(ConvBlock(in_channels = channel, out_channels = channel//2, norm_layer = 'batchnorm', padding_mode = 'None',
                                activation_fn = 'ReLU', conv = 'convT', kernel_size = 4, stride = 1, padding = 1, bias = False))
-            channel //= channel
+            channel //= 2
             
         G.append(ConvBlock(in_channels = channel, out_channels = 3, norm_layer = 'None', padding_mode = 'None',
-                           activation_fn = 'Tanh', conv = 'convT', kernel_sie = 4, stride = 2, padding = 1, bias = False))
+                           activation_fn = 'Tanh', conv = 'convT', kernel_size = 4, stride = 2, padding = 1, bias = False))
         
         self.G = nn.Sequential(*G)
 #         self.G = nn.Sequential(
@@ -58,7 +58,7 @@ class Discriminator(nn.Module):
         for i in range(3):
             D.append(ConvBlock(in_channels = channel, out_channels = channel * 2, norm_layer = 'batchnorm', padding_mode = 'None',
                                activation_fn = 'LeakyReLU', conv = 'conv', kernel_size = 4, stride = 2, padding = 1, bias = False))
-            channels *= 2
+            channel *= 2
         D.append(ConvBlock(in_channels = channel, out_channels = 1, norm_layer = 'None', padding_mode = 'None',
                            activation_fn = 'Sigmoid', conv = 'conv', kernel_size = 4, stride = 1, padding = 0, bias = False))
         self.D = nn.Sequential(*D)

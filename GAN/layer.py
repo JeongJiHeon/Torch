@@ -129,7 +129,7 @@ class ConvBlock(nn.Module):
         if conv == 'conv':
             model.append(nn.Conv2d(in_channels = in_channels, out_channels = out_channels, kernel_size = kernel_size, stride = stride, padding = padding, bias = bias))
         elif conv == 'convT':
-            model.append(nn.ConvTranspose2d(in_channels = in_channels, out_channels = out_channels, kernel_size = kernel_size, stride = stride, padding = padding, output_padding = padding, bias = bias))
+            model.append(nn.ConvTranspose2d(in_channels = in_channels, out_channels = out_channels, kernel_size = kernel_size, stride = stride, padding = padding,  output_padding = padding, bias = bias))
         elif conv == 'None':
             pass
             
@@ -149,18 +149,21 @@ class ConvBlock(nn.Module):
         elif activation_fn == 'Tanh':
             model.append(nn.Tanh())
         elif activation_fn == 'LeakyReLU':
-            model.append(nn.LeakyReLU(leaky_scope), inplace = True)
+            model.append(nn.LeakyReLU(leaky_scope, inplace = True))
         elif activation_fn == 'None':
             pass
             
         self.model = nn.Sequential(*model)
+        utils.init_weight(self.model)
+
+
     def forward(self, inputs):
         return self.model(inputs)
     
     
     
 class ResidualBlock(nn.Module):
-    def __init__(self, dim, padding_mode,  norm_layer, activation_fn, kernel_size = 3, stride = 1, padding = 1, leaky_scope = 0.2):
+    def __init__(self, dim, padding_mode,  norm_layer, activation_fn, kernel_size = 3, stride = 1, padding = 0, leaky_scope = 0.2):
         '''
         ================================================================================
         
@@ -202,10 +205,12 @@ class ResidualBlock(nn.Module):
         
         super(ResidualBlock, self).__init__()
         model = []
-        if padding_mode == 'reflect':
-            model.append(nn.ReflectionPad2d(1))
-        elif padding_mode == 'zero':
-            model.append(nn.ZeroPad2d(1))
+        if padding_mode[0] == 'reflect':
+            model.append(nn.ReflectionPad2d(padding_mode[1]))
+        elif padding_mode[0] == 'zero':
+            model.append(nn.ZeroPad2d(padding_mode[1]))
+        elif padding_mode[0] == 'None':
+            pass
 
         if norm_layer == 'batchnorm':
             norm = nn.BatchNorm2d(dim)
@@ -228,5 +233,7 @@ class ResidualBlock(nn.Module):
         model.pop()
         
         self.model = nn.Sequential(*model)
+        utils.init_weight(self.model)
+        
     def forward(self, inputs):
         return inputs + self.model(inputs)

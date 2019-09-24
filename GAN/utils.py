@@ -197,7 +197,21 @@ def makegif(imglist, path, name,  num = 1):
     imageio.mimsave(name, images, fps = 5)
 
     
-    
+def ImagePool(pool, image, max_size = 50):
+    gen_image = image.detach().numpy()
+    if len(pool) < max_size:
+        pool.append(gen_image)
+        return image
+    else:
+        p = random()
+        if p > 0.5:
+            random_id = randint(0, len(pool)-1)
+            temp = pool[random_id]
+            pool[random_id] = gen_image
+            return torch.Tensor(temp)
+        else:
+            return torch.Tensor(gen_image)
+        
     
     
     

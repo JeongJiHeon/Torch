@@ -16,7 +16,7 @@ datarootB = '/root/deeplearning/ukiyoe2photo/trainB'
 #datarootB = '/Users/mac/Documents/GitHub/GAN/data/ukiyoe2photo/trainB'
 
 
-LAMBDA = 100
+cycleLambda = 10
 EPOCH = 200
 batch_size = 1
 learning_rate = 0.0002
@@ -81,33 +81,50 @@ else:
     img_list.append(torch.cat([G_A(fix_dataB).detach(), G_B(fix_dataA).detach()]).numpy())
     np.save('cyclegan_epoch_img_list', img_list)
 
-real_label = torch.ones(batch_size, 512, 16, 16)
-fake_label = torch.zeros(batch_size, 512, 16, 16)
+real_label = torch.ones(batch_size, 1)
+fake_label = torch.zeros(batch_size, 1)
 
-criterion = torch.nn.BCELoss()
+criterion = torch.nn.MSELoss()
 L1Loss = torch.nn.L1Loss()
-cycleLambda = 10
 
+
+    
 print('----Finish Load----')
 
 
 def main():
     img_list = []
-
+    
+    if 'trainepoch.npy' in os.listdir():
+        trainepoch = int(np.load('trainepoch.npy'))
+    else:
+        trainepoch = 0
+    
+    if 'ImagePool_A.npy' in os.listdir():
+        ImagePool_A = list(np.load('ImagePool_A.npy'))
+        ImagePool_B = list(np.load('ImagePool_B.npy'))
+    else:
+        ImagePool_A = []
+        ImagePool_B = []
+    
+    
     
     lr = learning_rate
     for epoch in range(EPOCH):
         
-        if epoch >= 50:
-            lr *= (epoch-1)
-            lr /= (epoch)
+        if trainepoch >= epoch:
+            continue
+        
+        if epoch >= 100:
+            lr = 0.0002 - 0.0002*(epoch-100)/100
 
 
-        optimG_A = torch.optim.Adam(G_A.parameters(), lr = lr, betas = (0.9, 0.99))
-        optimD_A = torch.optim.Adam(D_A.parameters(), lr = lr, betas = (0.9, 0.99))
 
-        optimG_B = torch.optim.Adam(G_B.parameters(), lr = lr, betas = (0.9, 0.99))
-        optimD_B = torch.optim.Adam(D_B.parameters(), lr = lr, betas = (0.9, 0.99))
+        optimG_A = torch.optim.Adam(G_A.parameters(), lr = lr, betas = (0.5, 0.999))
+        optimD_A = torch.optim.Adam(D_A.parameters(), lr = lr, betas = (0.5, 0.999))
+
+        optimG_B = torch.optim.Adam(G_B.parameters(), lr = lr, betas = (0.5, 0.999))
+        optimD_B = torch.optim.Adam(D_B.parameters(), lr = lr, betas = (0.5, 0.999))
         
 
         if 'cyclegan_epoch_img_list.npy' in os.listdir():
@@ -127,6 +144,15 @@ def main():
             fake_A = G_A(dataB) # Make A used by Generator_A
             fake_B = G_B(dataA) # Make B used by Generator_B
             
+            fake_A = utils.ImagePool(ImagePool_A, fake_A)
+            fake_B = utils.ImagePool(ImagePool_B, fake_B)
+            
+            np.save('ImagePool_A', ImagePool_A)
+            np.save('ImagePool_B', ImagePool_B)
+            
+            same_A = G_A(dataA) # Identity A used by Generator_A
+            same_B = G_B(dataB) # Identitiy B used by Generator_B
+            
             cycle_A = G_A(fake_B) # Make cycleA used by Generator_A in fake_B
             cycle_B = G_B(fake_A) # Make cycleB used by Generator_B in fake_A
             
@@ -142,29 +168,27 @@ def main():
             optimD_A.step()
             optimD_B.step()
             print("[{}/{}]".format(i, len(dataloaderA)), end = ' ')
-            print("Discriminator Finish", end = ' ')
             
             optimG_A.zero_grad()
             optimG_B.zero_grad()
             
+            
             Loss_G_A = criterion(D_A(fake_A), real_label)
-            Loss_G_A.backward(retain_graph=True)
             
             Loss_G_B = criterion(D_B(fake_B), real_label)
-            Loss_G_B.backward(retain_graph=True)
             
             cycleLoss_G_F = cycleLambda * (L1Loss(cycle_A, dataA) + L1Loss(cycle_B, dataB))
-            cycleLoss_G_F.backward(retain_graph=True)
             
+            LossG = Loss_G_A + Loss_G_B + cycleLoss_G_F
+            LossG.backward(retain_graph=True)
+                        
             optimG_A.step()
             optimG_B.step()
             
-            print("Generator Finish")
-
 
             
-            print("D_A : {}, D_B : {}, G_A : {}, G_B : {}, cycleLoss : {}".format(Loss_Da_G_X_Y.item(), Loss_Db_F_Y_X.item(), 
-                                                                Loss_G_A.item(), Loss_G_B.item(), cycleLoss_G_F.item()))
+            print("[{}] D_A : {:.4f}, D_B : {:.4f}, G_A : {:.4f}, G_B : {:.4f}, cycleLoss : {:.4f}".format(epoch, Loss_Da_G_X_Y.item(), Loss_Db_F_Y_X.item(), 
+                                                                (Loss_G_A).item(), (Loss_G_B).item(), cycleLoss_G_F.item()))
             
             if i % 100 == 0:
                 utils.save_model(G_A, name = 'cyclegan_Generator_A.pkl')
@@ -172,6 +196,7 @@ def main():
 
                 utils.save_model(G_B, name = 'cyclegan_Generator_B.pkl')
                 utils.save_model(D_B, name = 'cyclegan_Discriminator_B.pkl')
+        np.save('trainepoch', np.array(epoch))
 
 
             
