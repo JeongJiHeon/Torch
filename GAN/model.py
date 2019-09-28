@@ -1,7 +1,7 @@
 import torch
-import dcgan
-import cgan
-import pix2pix
+#import dcgan
+#import cgan
+#import pix2pix
 import cyclegan
 
 def model(model):
@@ -29,16 +29,16 @@ def model(model):
                    return Generator, Discriminator
            ========================================
     '''
-    if model =='dcgan':
-        return dcgan.Generator, dcgan.Discriminator
+#    if model =='dcgan':
+#        return dcgan.Generator, dcgan.Discriminator
 
-    elif model == 'cgan':
-        return cgan.Generator, cgan.Discriminator
+#    elif model == 'cgan':
+#        return cgan.Generator, cgan.Discriminator
     
-    elif model == 'pix2pix':
-        return pix2pix.Generator, pix2pix.Discriminator
+#    elif model == 'pix2pix':
+#        return pix2pix.Generator, pix2pix.Discriminator
     
-    elif model == 'cyclegan':
+    if model == 'cyclegan':
         return cyclegan.Generator, cyclegan.Discriminator
 
 

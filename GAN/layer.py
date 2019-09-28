@@ -225,7 +225,7 @@ class ResidualBlock(nn.Module):
         elif activation_fn == 'Tanh':
             model.append(nn.Tanh())
         elif activation_fn == 'LeakyReLU':
-            model.append(nn.LeakyReLU(leaky_scope))
+            model.append(nn.LeakyReLU(leaky_scope, inplace = True))
         elif activation_fn == 'None':
             pass
         

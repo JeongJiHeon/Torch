@@ -9,8 +9,11 @@ import torchvision
 import torchvision.datasets as dset
 import torchvision.transforms as transforms
 import os
-datarootA = '/root/deeplearning/ukiyoe2photo/trainA'
-datarootB = '/root/deeplearning/ukiyoe2photo/trainB'
+datarootA = '/root/deeplearning/monet2photo/trainA'
+datarootB = '/root/deeplearning/monet2photo/trainB'
+
+#datarootA = '/root/deeplearning/ukiyoe2photo/trainA'
+#datarootB = '/root/deeplearning/ukiyoe2photo/trainB'
 
 #datarootA = '/Users/mac/Documents/GitHub/GAN/data/ukiyoe2photo/trainA'
 #datarootB = '/Users/mac/Documents/GitHub/GAN/data/ukiyoe2photo/trainB'
@@ -22,11 +25,11 @@ batch_size = 1
 learning_rate = 0.0002
 
 Generator , Discriminator = model.model('cyclegan')
-G_A = Generator()
-G_B = Generator()
+G_A = Generator() # input = B Make A image
+G_B = Generator() # input = A Make  B image
 
-D_A = Discriminator()
-D_B = Discriminator()
+D_A = Discriminator() # input = A
+D_B = Discriminator() # input = B
 
 #G = torch.load('pix2pix_Generator.pkl')
 #D = torch.load('pix2pix_Discriminator.pkl')
@@ -65,8 +68,8 @@ datasetB = dset.ImageFolder(root = datarootB, transform =  transforms.Compose(
              transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
         ))
 
-dataloaderB = torch.utils.data.DataLoader(datasetB, batch_size = 1, shuffle = True, num_workers = 0)
-dataloaderA = torch.utils.data.DataLoader(datasetA, batch_size = 1, shuffle = True, num_workers = 0)
+dataloaderB = torch.utils.data.DataLoader(datasetB, batch_size = 1, shuffle = True, num_workers = 2)
+dataloaderA = torch.utils.data.DataLoader(datasetA, batch_size = 1, shuffle = True, num_workers = 2)
 
 img_list = []
 
@@ -81,8 +84,8 @@ else:
     img_list.append(torch.cat([G_A(fix_dataB).detach(), G_B(fix_dataA).detach()]).numpy())
     np.save('cyclegan_epoch_img_list', img_list)
 
-real_label = torch.ones(batch_size, 1)
-fake_label = torch.zeros(batch_size, 1)
+real_label = torch.ones(D_A(fix_dataB).shape)
+fake_label = torch.zeros(D_A(fix_dataB).shape)
 
 criterion = torch.nn.MSELoss()
 L1Loss = torch.nn.L1Loss()
@@ -135,60 +138,70 @@ def main():
         
         
         for i, data in enumerate(zip(iter(dataloaderA), iter(dataloaderB))):
-            dataA = (data[0][0] +1)/2
-            dataB = (data[1][0] +1)/2
-            
-            optimD_A.zero_grad()
-            optimD_B.zero_grad()
+            dataA = (data[0][0])
+            dataB = (data[1][0])
             
             fake_A = G_A(dataB) # Make A used by Generator_A
             fake_B = G_B(dataA) # Make B used by Generator_B
-            
-            fake_A = utils.ImagePool(ImagePool_A, fake_A)
-            fake_B = utils.ImagePool(ImagePool_B, fake_B)
-            
-            np.save('ImagePool_A', ImagePool_A)
-            np.save('ImagePool_B', ImagePool_B)
-            
-            same_A = G_A(dataA) # Identity A used by Generator_A
-            same_B = G_B(dataB) # Identitiy B used by Generator_B
-            
             cycle_A = G_A(fake_B) # Make cycleA used by Generator_A in fake_B
             cycle_B = G_B(fake_A) # Make cycleB used by Generator_B in fake_A
             
+   ######## ---- Train Generator ---- ########
 
-            
-            
-            Loss_Da_G_X_Y = criterion(D_A(dataA), real_label) + criterion(D_A(fake_A), fake_label)
-            Loss_Da_G_X_Y.backward(retain_graph=True)
-            
-            Loss_Db_F_Y_X = criterion(D_B(dataB), real_label) + criterion(D_B(fake_B), fake_label)
-            Loss_Db_F_Y_X.backward(retain_graph=True)
-            
-            optimD_A.step()
-            optimD_B.step()
-            print("[{}/{}]".format(i, len(dataloaderA)), end = ' ')
-            
+
+
             optimG_A.zero_grad()
             optimG_B.zero_grad()
+        
+            D_A_fakeA = D_A(fake_A)
+            D_B_fakeB = D_B(fake_B)            
             
+            Loss_G_A = criterion(D_A_fakeA, real_label) 
+            Loss_G_B = criterion(D_B_fakeB, real_label)
             
-            Loss_G_A = criterion(D_A(fake_A), real_label)
-            
-            Loss_G_B = criterion(D_B(fake_B), real_label)
+            Identity_Loss_G_A = L1Loss(G_A(dataA), dataA) + 0.5 * cycleLambda
+            Identity_Loss_G_B = L1Loss(G_B(dataB), dataB) + 0.5 * cycleLambda
+
             
             cycleLoss_G_F = cycleLambda * (L1Loss(cycle_A, dataA) + L1Loss(cycle_B, dataB))
             
-            LossG = Loss_G_A + Loss_G_B + cycleLoss_G_F
+            LossG = Loss_G_A + Loss_G_B + cycleLoss_G_F + Identity_Loss_G_A + Identity_Loss_G_B
             LossG.backward(retain_graph=True)
                         
             optimG_A.step()
             optimG_B.step()
             
-
             
-            print("[{}] D_A : {:.4f}, D_B : {:.4f}, G_A : {:.4f}, G_B : {:.4f}, cycleLoss : {:.4f}".format(epoch, Loss_Da_G_X_Y.item(), Loss_Db_F_Y_X.item(), 
-                                                                (Loss_G_A).item(), (Loss_G_B).item(), cycleLoss_G_F.item()))
+   ######## ---- Train Discriminator ---- ########
+            
+            optimD_A.zero_grad()
+            optimD_B.zero_grad()
+            
+            fake_A, p_A = utils.ImagePool(ImagePool_A, fake_A)
+            fake_B, p_B = utils.ImagePool(ImagePool_B, fake_B)
+            
+            D_A_dataA = D_A(dataA)
+            D_B_dataB = D_B(dataB)
+            
+            if p_A:
+                D_A_fakeA = D_A(fake_A)
+            if p_B:
+                D_B_fakeB = D_B(fake_B)
+
+
+            Loss_Da_G_X_Y = (criterion(D_A_dataA, real_label) + criterion(D_A_fakeA, fake_label))/2
+            Loss_Da_G_X_Y.backward(retain_graph=True)
+            
+            Loss_Db_F_Y_X = (criterion(D_B_dataB, real_label) + criterion(D_B_fakeB, fake_label))/2
+            Loss_Db_F_Y_X.backward(retain_graph=True)
+            
+            optimD_A.step()
+            optimD_B.step()
+            np.save('ImagePool_A', ImagePool_A)
+            np.save('ImagePool_B', ImagePool_B)
+            print("[{}] [{}/{}] D_A : {:.4f}, D_B : {:.4f}, G_A : {:.4f}, G_B : {:.4f}, cycleLoss : {:.4f}".format(epoch, i, len(dataloaderA), 
+                                                                                                                   Loss_Da_G_X_Y.item(), Loss_Db_F_Y_X.item(), 
+                                                                (Loss_G_A+Identity_Loss_G_A).item(), (Loss_G_B+Identity_Loss_G_B).item(), cycleLoss_G_F.item()))
             
             if i % 100 == 0:
                 utils.save_model(G_A, name = 'cyclegan_Generator_A.pkl')
