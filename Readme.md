@@ -45,8 +45,8 @@
 
 <div>
 
-<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cycleGAN.png">
-<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cycleGAN1.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cycleGAN.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cycleGAN2.png">
 
 
 </div>
