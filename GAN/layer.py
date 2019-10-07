@@ -6,7 +6,7 @@ import utils
     
     
 class LinearBlock(nn.Module):
-    def __init__(self, in_dim, out_dim, norm_layer, padding_mode, activation_fn, bias = False, leaky_scope = 0.2, padding = 3):
+    def __init__(self, in_dim, out_dim, norm_layer='None', padding_mode='None', activation_fn='None', bias = False, leaky_scope = 0.2, padding = 3):
         '''
         ======================================================================
         
@@ -21,18 +21,18 @@ class LinearBlock(nn.Module):
         out_dim = Output Dimension ( int )
         
         norm_layer ( Normalization Layer ) ( str )
-            - 'batchnorm' : Batch Normalization
-            - 'instance'     : Instance Normalization
-            - 'None'          : Nothing
+            - 'batchnorm'      : Batch Normalization
+            - 'instance'       : Instance Normalization
+            - 'None'           : Nothing
             
         padding_mode ( Padding Layer ) ( tuple = ( str, int ) )
             - 'reflect'        : Reflect Padding
             - 'zero'           : Zero Padding
-            - 'None'          : Nothing
+            - 'None'           : Nothing
             
         activation_fn ( Activation Function Layer ) ( str )
-            - 'Sigmoid'      : Sigmoid Function
-            - 'ReLU'          : ReLU Function
+            - 'Sigmoid'        : Sigmoid Function
+            - 'ReLU'           : ReLU Function
             - 'Tanh'           : Tanh Function
             - 'LeakyReLU' : Leaky ReLU Function ( optional ( leaky_scope = 0.2 ) )
         
@@ -77,7 +77,7 @@ class LinearBlock(nn.Module):
 
 
 class ConvBlock(nn.Module):
-    def __init__(self, in_channels, out_channels, norm_layer, padding_mode, activation_fn, conv, kernel_size=3, stride = 1, padding = 1, bias = False, leaky_scope = 0.2):
+    def __init__(self, in_channels, out_channels, norm_layer='None', padding_mode='None', activation_fn='None', conv='None', kernel_size=3, stride = 1, padding = 1, bias = False, leaky_scope = 0.2):
         '''
         ============================================================================
         
@@ -99,21 +99,21 @@ class ConvBlock(nn.Module):
         
         
         norm_layer ( Normalization Layer ) ( str )
-            - 'batchnorm' : Batch Normalization
-            - 'instance'     : Instance Normalization
-            - 'None'          : Nothing
+            - 'batchnorm'      : Batch Normalization
+            - 'instance'       : Instance Normalization
+            - 'None'           : Nothing
             
         padding_mode ( Padding Layer ) ( tuple = ( str, int ) )
             - 'reflect'        : Reflect Padding
             - 'zero'           : Zero Padding
-            - 'None'          : Nothing
+            - 'None'           : Nothing
             
         activation_fn ( Activation Function Layer ) ( str )
-            - 'Sigmoid'      : Sigmoid Function
-            - 'ReLU'          : ReLU Function
+            - 'Sigmoid'        : Sigmoid Function
+            - 'ReLU'           : ReLU Function
             - 'Tanh'           : Tanh Function
             - 'LeakyReLU' : Leaky ReLU Function ( optional ( leaky_scope = 0.2 ) )
-        
+            
         ===============================================================
         '''
         
@@ -163,7 +163,7 @@ class ConvBlock(nn.Module):
     
     
 class ResidualBlock(nn.Module):
-    def __init__(self, dim, padding_mode,  norm_layer, activation_fn, kernel_size = 3, stride = 1, padding = 0, leaky_scope = 0.2):
+    def __init__(self, dim, padding_mode='None',  norm_layer='None', activation_fn='None', kernel_size = 3, stride = 1, padding = 0, leaky_scope = 0.2):
         '''
         ================================================================================
         
@@ -185,18 +185,18 @@ class ResidualBlock(nn.Module):
         padding = Convolution Padding Size ( int )
         
         norm_layer ( Normalization Layer ) ( str )
-            - 'batchnorm' : Batch Normalization
-            - 'instance'     : Instance Normalization
-            - 'None'          : Nothing
+            - 'batchnorm'      : Batch Normalization
+            - 'instance'       : Instance Normalization
+            - 'None'           : Nothing
             
         padding_mode ( Padding Layer ) ( tuple = ( str, int ) )
             - 'reflect'        : Reflect Padding
             - 'zero'           : Zero Padding
-            - 'None'          : Nothing
+            - 'None'           : Nothing
             
         activation_fn ( Activation Function Layer ) ( str )
-            - 'Sigmoid'      : Sigmoid Function
-            - 'ReLU'          : ReLU Function
+            - 'Sigmoid'        : Sigmoid Function
+            - 'ReLU'           : ReLU Function
             - 'Tanh'           : Tanh Function
             - 'LeakyReLU' : Leaky ReLU Function ( optional ( leaky_scope = 0.2 ) )
         
@@ -216,7 +216,10 @@ class ResidualBlock(nn.Module):
             norm = nn.BatchNorm2d(dim)
         elif norm_layer == 'instance':
             norm = nn.InstanceNorm2d(dim)
+        elif norm_layer == 'None':
+            pass
         model += [nn.Conv2d(dim, dim , kernel_size = kernel_size, stride = stride, bias = False, padding = padding), norm]
+        
         
         if activation_fn == 'Sigmoid':
             model.append(nn.Sigmoid())
