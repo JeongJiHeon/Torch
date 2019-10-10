@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 import imageio
 from random import *
 
+
+
 def dataset(data = 'mnist', root = 'data', train = True, download = True, size = 28, transform = True, 
             batch_size = 128, shuffle = True, num_workers = 2, drop_last = True):
     '''
