@@ -43,7 +43,7 @@ class Discriminator(nn.Module):
         # y_input Layer
         y.append(LinearBlock(in_dim = 10, out_dim = 500, norm_layer = 'None', padding_mode = 'None', activation_fn = 'LeakyReLU'))
         
-        # Discriminaotr Layer
+        # Discriminator Layer
         D.append(LinearBlock(in_dim = 1000, out_dim = 512, norm_layer = 'batchnorm', padding_mode = 'None', activation_fn = 'LeakyReLU'))
         D.append(LinearBlock(in_dim = 512, out_dim = 256, norm_layer = 'batchnorm', padding_mode = 'None', activation_fn = 'LeakyReLU'))
         D.append(LinearBlock(in_dim = 256, out_dim = 1, norm_layer = 'None', padding_mode = 'None', activation_fn = 'Sigmoid'))
