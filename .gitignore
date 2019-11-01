@@ -5,11 +5,14 @@ __pycache__/
 
 #data 셋 무시
 data/
-torch/
 img/
 google/
+torch/
+<<<<<<< HEAD
 옛날꺼/
 
+=======
+>>>>>>> 6955c953bb89566737b288f252dbdc5e8bbed166
 *.pkl
 *.npy
 
