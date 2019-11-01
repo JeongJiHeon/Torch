@@ -5,7 +5,6 @@ __pycache__/
 
 #data 셋 무시
 data/
-torch/
 img/
 google/
 *.pkl
