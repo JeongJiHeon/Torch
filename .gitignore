@@ -7,6 +7,9 @@ __pycache__/
 data/
 torch/
 img/
+google/
+옛날꺼/
+
 *.pkl
 *.npy
 
