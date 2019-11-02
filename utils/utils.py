@@ -14,6 +14,26 @@ from random import *
 
 
 
+def PresentationExperience(epoch,stop,  **kargw):
+    sentence = '\r[ epoch : {} ] '
+    for i in range(len(kargw)):
+        sentence += '[ {} : {} ] '
+    print(sentence.format(epoch,*[i for a in kargw for i in [a, kargw[a]]] ) , end = ' ')
+    if epoch % stop == 0:
+        print()
+        
+        
+def imshow(imgTensor, title=None):
+    imgTensor = imgTensor.cpu().clone().squeeze()
+    image = transforms.ToPILImage()(imgTensor)
+    plt.imshow(image)
+    if title is not None:
+        plt.title(title)
+    plt.pause(0.001)
+
+
+        
+
 def dataset(data = 'mnist', root = 'data', train = True, download = True, size = 28, transform = True, 
             batch_size = 128, shuffle = True, num_workers = 2, drop_last = True):
     '''
