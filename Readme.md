@@ -7,6 +7,9 @@
 <img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/accuracy.jpg">
 <img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/time.jpg">
 
+It doesn't look good in a small model.
+
+
 </div>
 
 
