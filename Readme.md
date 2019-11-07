@@ -1,3 +1,14 @@
+# Octave Convolution
+* [OctConv][https://arxiv.org/abs/1904.05049]
+
+<div>
+
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/loss.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/accuracy.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/time.jpg">
+
+</div>
+
 
 # Generative Model
 
@@ -72,15 +83,4 @@
 </div>
 
 
-
-# Octave Convolution
-* [OctConv][https://arxiv.org/abs/1904.05049]
-
-<div>
-
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/loss.jpg">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/accuracy.jpg">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/time.jpg">
-
-</div>
 
