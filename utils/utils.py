@@ -1,9 +1,10 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import torch.nn.functional as F
+import torch.utils as utils
 import torchvision.datasets as dset
 import torchvision.transforms as transforms
-import torch.utils as utils
 import torchvision.utils as vutils
 import torchvision
 import os
@@ -13,14 +14,21 @@ import imageio
 from random import *
 
 
-
-def PresentationExperience(epoch,stop,  **kargw):
-    sentence = '\r[ epoch : {} ] '
+        
+def PresentationExperience(epoch,num , stop,  **kargw):
+    sentence = '\r[ epoch : %d ] [ num : %d ]'
     for i in range(len(kargw)):
-        sentence += '[ {} : {} ] '
-    print(sentence.format(epoch,*[i for a in kargw for i in [a, kargw[a]]] ) , end = ' ')
-    if epoch % stop == 0:
+        sentence += '[ %s : %.4f ] '
+    print(sentence % (epoch, num, *[i for a in kargw for i in [a, kargw[a]]] ) , end = ' ')
+    if num % stop == 0:
         print()
+        
+def Accuracy(X, Y):
+    correct = 0
+    for i in range(X.size(0)):
+        if X[i][Y[i]] == X[i].max():
+            correct += 1
+    return correct/X.size(0)
         
         
 def imshow(imgTensor, title=None):
