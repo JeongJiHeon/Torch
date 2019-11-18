@@ -6,8 +6,8 @@ class OctConv2d(nn.Module):
         assert 0 <= a_in <= 1, ' a_in must be in [0,1]'
         assert 0 <= a_out <=1, 'a_out must be in [0,1]'
         
-        assert in_channels * a_in - int(in_channels * a_in) == 0
-        assert out_channels * a_out - int(out_channels * a_out) == 0
+        assert in_channels * a_in - int(in_channels * a_in) == 0, 'not int'
+        assert out_channels * a_out - int(out_channels * a_out) == 0, 'not int'
         
         
         self.in_channels_H = int(in_channels * (1-a_in))
