@@ -3,13 +3,21 @@
 
 <div>
 
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/stl10_loss_avg_pool_nearest.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/stl10_accuracy_avg_pool_nearest.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/stl10_time_avg_pool_nearest.jpg">
+
+data = STL10
+
+
 <img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/loss.jpg">
 <img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/accuracy.jpg">
 <img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/time.jpg">
 
+data = CIFAR10
+
+
 It doesn't look good in a small model.
-
-
 
 
 
