@@ -20,7 +20,7 @@ conditionalGAN 에서 label 이 vector가 아니라 Image를 사용했다는 점
 
 Data를 paired하게 설정한 것이 아니라, Generator의 Architecture가 paired하도록 setting 됐다고 생각해보자. 즉,
 
-$$x \in X,\ \ \ \ \ G(x) \in Y\\y \in Y, \ \ \ \ \ F(y) \in X$$
+![equation][$$x \in X,\ \ \ \ \ G(x) \in Y\\y \in Y, \ \ \ \ \ F(y) \in X$$]
 
 를 만족하는 Generator G, F가 존재한다고 가정하자. 그리고 우리의 목표는 G와 F 가 inverse 관계가 되도록 만드는 것이다. 따라서
 
