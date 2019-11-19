@@ -37,7 +37,6 @@ $$\|f\|_{Lip} \le \|\bold h_L\rightarrow W^{L+1}\bold h_L\|_{Lip}\|a_L\|_{Lip}\|
 모든 W 들을 W의 spectral norm이 1을 넘지 못하도록 만들어주는 것을 Spectral Normalization이다. 
 다시 말해, 모든 Weight들을 W의 spectral norm 으로 나누어서 f의 Lipschitz constant을 1보다 작게 만들어 derivate에 대한 constraint를 설정한다.
 
-![](_2019-11-18_02-466092dd-0511-438d-ace7-059ee70b62da.47.07.png)
 
 여기서 위에서 계산되는 gradient는 Normalization을 하지 않아도 계산되는 gradient이고
            밑에서 계산되는 gradient는 Normalization을 해서 추가적으로 계산되는 gradient이다.
