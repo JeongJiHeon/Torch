@@ -18,7 +18,7 @@ A와 B를 완벽하게 구분할 수 있는 Discriminator가 존재한다는 뜻
 
 # Method
 
-$$D^*_G(x) = {q_{data}(x) \over q_{data}+p_G(x)} = sigmoid(f^*(x)), \\where\ f^*(x) = \log q_{data}(x) -\log p_G(x)$$
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;D^*_G(x) = {q_{data}(x) \over q_{data}+p_G(x)} = sigmoid(f^*(x)), \\where\ f^*(x) = \log q_{data}(x) -\log p_G(x)>
 
 $$∇_xf^*(x) = {1 \over{q_{data} (x)}} ∇_xq_{data}(x) − {1 \over{p_{G} (x)}} ∇_xp_G(x)$$
 
