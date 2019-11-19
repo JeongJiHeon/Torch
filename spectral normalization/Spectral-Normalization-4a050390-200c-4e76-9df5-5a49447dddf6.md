@@ -18,9 +18,9 @@ A와 B를 완벽하게 구분할 수 있는 Discriminator가 존재한다는 뜻
 
 # Method
 
-$$D^*_G(x) = {q_{data}(x) \over q_{data}+p_G(x)} = sigmoid(f^*(x)), \\where\ f^*(x) = \log q_{data}(x) -\log p_G(x)$$
+$$D^*_G(x)={q_{data}(x)\over{q_{data}+p_G(x)}}=sigmoid(f^*(x)),\\where{f^*(x)}=\log q_{data}(x)-\log{p_G(x)}$$
 
-$$∇_xf^*(x) = {1 \over{q_{data} (x)}} ∇_xq_{data}(x) − {1 \over{p_{G} (x)}} ∇_xp_G(x)$$
+$$∇_xf^*(x)={1\over{q_{data}(x)}}∇_xq_{data}(x)−{1\over{p_{G}(x)}}∇_xp_G(x)$$
 
 여기서 derivate가 unbounded하고 incomputable 할 수 있다. 그래서 우리는 derivate를 제한하기 위해 시도할 것이다.
 
@@ -33,6 +33,12 @@ $$\|f\|_{Lip} = \sup_{x}\sup_{h \neq 0}{|f(x+h) - f(x)| \over|h|}=M\\ \Rightarro
 $$\|g\|_{Lip} = \sup_h\sigma(\nabla g(h)),\\ where\ \sigma(A)\ is\ spectral\ norm \ of\ matrix\ A\ (L2\ matrix\ norm\ of\ A)$$
 
 $$\|f\|_{Lip} \le \|\bold h_L\rightarrow W^{L+1}\bold h_L\|_{Lip}\|a_L\|_{Lip}\|\bold h_{L-1}\rightarrow W^L\bold h_{L-1}\|_{Lip} \dots\\\|a_1\|_{Lip}\|\bold h_0\rightarrow W^1 \bold h_0\|_{Lip} = \prod_{l=1}^{L+1}\|(\bold h_{l-1} \rightarrow W^l\bold h_l-1)\|_{Lip} = \prod_{l=1}^{L+1}\sigma(W^l).\\ \bar W_{SN}(W) := W/\sigma(W).$$
+
+
+
+$$\|f\|_{Lip}\le\|\bold{h}_L{\rightarrow}W^{L+1}\bold{h}_L\|_{Lip}\|a_L\|_{Lip}\|\bold{h}_{L-1}{\rightarrow}W^L\bold{h}_{L-1}\|_{Lip}\dots$$
+
+$$\|a_1\|_{Lip}\|\bold{h}_0{\rightarrow}W^1\bold{h}_0\|_{Lip}=\prod_{l=1}^{L+1}\|(\bold{h}_{l-1}{\rightarrow}W^l\bold{h}_l-1)\|_{Lip}=\prod_{l=1}^{L+1}\sigma(W^l).$$
 
 모든 W 들을 W의 spectral norm이 1을 넘지 못하도록 만들어주는 것을 Spectral Normalization이다. 
 다시 말해, 모든 Weight들을 W의 spectral norm 으로 나누어서 f의 Lipschitz constant을 1보다 작게 만들어 derivate에 대한 constraint를 설정한다.
