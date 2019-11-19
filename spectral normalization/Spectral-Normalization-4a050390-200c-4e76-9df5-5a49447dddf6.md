@@ -27,7 +27,7 @@ A와 B를 완벽하게 구분할 수 있는 Discriminator가 존재한다는 뜻
 
 여기서 derivate가 unbounded하고 incomputable 할 수 있다. 그래서 우리는 derivate를 제한하기 위해 시도할 것이다.
 
-$$\|f\|_{Lip} = \sup_{x}\sup_{h \neq 0}{|f(x+h) - f(x)| \over|h|}=M\\ \Rightarrow the\ smallest \ value\ M\ such\ that\ \frac{\|f(x)-f(x')\|}{\|x-x'\|} <M, for\ any\ x, x'$$
+<img src="https://latex.codecogs.com/svg.latex?\;\|f\|_{Lip}=\sup_{x}\sup_{h\neq{0}}{|f(x+h)-f(x)|\over|h|}=M">
 
 즉, Lipschitz constant가 존재한다면 derivate는 Lipschitz constant보다 작거나 같기 때문에 derivate를 제한할 수 있다.
 
