@@ -34,9 +34,11 @@ A와 B를 완벽하게 구분할 수 있는 Discriminator가 존재한다는 뜻
 
 ## Spectral Normalization
 
-<img src="https://latex.codecogs.com/svg.latex?\;g\|_{Lip}=\sup_h\sigma(\nabla{g(h)}),\\where\,\sigma(A)\,is\,spectral\,norm\,of\,matrix\,A\,(L2\,matrix\,norm\,of\,A)">
+<img src="https://latex.codecogs.com/svg.latex?\;\|g\|_{Lip}=\sup_h\sigma(\nabla{g(h)}),\\where\,\sigma(A)\,is\,spectral\,norm\,of\,matrix\,A\,(L2\,matrix\,norm\,of\,A)">
 
-<img src="https://latex.codecogs.com/svg.latex?\;f\|_{Lip}\le\|\boldh_L\rightarrow{W^{L+1}}\bold h_L\|_{Lip}\|a_L\|_{Lip}\|\bold{h}_{L-1}\rightarrowW^L\bold{h}_{L-1}\|_{Lip}">
+<img src="https://latex.codecogs.com/svg.latex?\;\|f\|_{Lip}\le\|\bold{h}_L{\rightarrow}W^{L+1}\bold{h}_L\|_{Lip}\|a_L\|_{Lip}\|\bold{h}_{L-1}{\rightarrow}W^L\bold{h}_{L-1}\|_{Lip}\dots">
+<img src="https://latex.codecogs.com/svg.latex?\;\|a_1\|_{Lip}\|\bold{h}_0{\rightarrow}W^1\bold{h}_0\|_{Lip}=\prod_{l=1}^{L+1}\|(\bold{h}_{l-1}{\rightarrow}W^l\bold{h}_l-1)\|_{Lip}=\prod_{l=1}^{L+1}\sigma(W^l).">
+<img src="https://latex.codecogs.com/svg.latex?\;\bar{W}_{SN}(W):=W/\sigma(W)">
 
 모든 W 들을 W의 spectral norm이 1을 넘지 못하도록 만들어주는 것을 Spectral Normalization이다. 
 다시 말해, 모든 Weight들을 W의 spectral norm 으로 나누어서 f의 Lipschitz constant을 1보다 작게 만들어 derivate에 대한 constraint를 설정한다.
