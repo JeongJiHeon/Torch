@@ -51,7 +51,7 @@ A와 B를 완벽하게 구분할 수 있는 Discriminator가 존재한다는 뜻
 
 <img src="https://latex.codecogs.com/svg.latex?\;V_D(\hat{G},D)=\mathbb{E}_{x{\sim}q_{data}}[\min(0,-1+D(x))]+\mathbb{E}_{z{\sim}p(z)}[\min(0,-1-D(\hat{G}(z)))]">
 
-<img src="https://latex.codecogs.com/svg.latex?\;V_G(G,\hat{D})=-\mathbb{E}_{z{\sim}p(z)}[\hat D(G(z))]">
+<img src="https://latex.codecogs.com/svg.latex?\;V_G(G,\hat{D})=-\mathbb{E}_{z{\sim}p(z)}[\hat{D}(G(z))]">
 
 Loss Function 에서는 hinge loss 를 사용했다. 이것이 FID(Frechet Inception Distance)를 올려주는 퍼포먼스를 보여주기 좋다.
 
