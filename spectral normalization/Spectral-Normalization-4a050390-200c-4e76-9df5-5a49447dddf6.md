@@ -28,15 +28,15 @@ A와 B를 완벽하게 구분할 수 있는 Discriminator가 존재한다는 뜻
 여기서 derivate가 unbounded하고 incomputable 할 수 있다. 그래서 우리는 derivate를 제한하기 위해 시도할 것이다.
 
 <img src="https://latex.codecogs.com/svg.latex?\;\|f\|_{Lip}=\sup_{x}\sup_{h\neq{0}}{|f(x+h)-f(x)|\over|h|}=M">
-<img src="https://latex.codecogs.com/svg.latex?\;\Rightarrow\,the\,smallest\,value\,M\,such\,that\,\frac{\|f(x)-f(x')\|}{\|x-x'\|}<M,for\,any\,x">
+<img src="https://latex.codecogs.com/svg.latex?\;\Rightarrow\,the\,smallest\,value\,M\,such\,that\,\frac{\|f(x)-f(x')\|}{\|x-x'\|}<M,for\,any\,x,x'">
 
 즉, Lipschitz constant가 존재한다면 derivate는 Lipschitz constant보다 작거나 같기 때문에 derivate를 제한할 수 있다.
 
 ## Spectral Normalization
 
-<img src="https://latex.codecogs.com/svg.latex?\;g\|_{Lip}=\sup_h\sigma(\nabla{g(h)}),\\where\,\sigma(A)\,is\,spectral\,norm\,of\,matrix\,A\,(L2\,matrix\,norm\,of\,A)>
+<img src="https://latex.codecogs.com/svg.latex?\;g\|_{Lip}=\sup_h\sigma(\nabla{g(h)}),\\where\,\sigma(A)\,is\,spectral\,norm\,of\,matrix\,A\,(L2\,matrix\,norm\,of\,A)">
 
-<img src="https://latex.codecogs.com/svg.latex?\;f\|_{Lip}\le\|\boldh_L\rightarrow{W^{L+1}}\bold h_L\|_{Lip}\|a_L\|_{Lip}\|\bold{h}_{L-1}\rightarrowW^L\bold{h}_{L-1}\|_{Lip}>
+<img src="https://latex.codecogs.com/svg.latex?\;f\|_{Lip}\le\|\boldh_L\rightarrow{W^{L+1}}\bold h_L\|_{Lip}\|a_L\|_{Lip}\|\bold{h}_{L-1}\rightarrowW^L\bold{h}_{L-1}\|_{Lip}">
 
 모든 W 들을 W의 spectral norm이 1을 넘지 못하도록 만들어주는 것을 Spectral Normalization이다. 
 다시 말해, 모든 Weight들을 W의 spectral norm 으로 나누어서 f의 Lipschitz constant을 1보다 작게 만들어 derivate에 대한 constraint를 설정한다.
