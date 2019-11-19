@@ -23,7 +23,7 @@ A와 B를 완벽하게 구분할 수 있는 Discriminator가 존재한다는 뜻
 <img src="https://latex.codecogs.com/svg.latex?\;where,{f^*(x)}=\log{q_{data}}(x)-\log{p_G(x)}" title = "\Large&space;D^*_G(x) = {q_{data}(x) \over q_{data}+p_G(x)}"/>
 
 
-<img src="https://latex.codecogs.com/svg.latex?\;∇_xf^*(x)={1\over{q_{data}(x)}}∇_xq_{data}(x)−{1\over{p_{G}(x)}}∇_xp_G(x)" title = "33" />
+<img src="https://latex.codecogs.com/svg.latex?\;\bigtriangledown_xf^*(x)={1\over{q_{data}(x)}}\bigtriangledown_xq_{data}(x)−{1\over{p_{G}(x)}}\bigtriangledown_xp_G(x)" title = "33" />
 
 여기서 derivate가 unbounded하고 incomputable 할 수 있다. 그래서 우리는 derivate를 제한하기 위해 시도할 것이다.
 
