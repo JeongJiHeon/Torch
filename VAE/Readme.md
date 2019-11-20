@@ -45,7 +45,7 @@ Generative하는 모델을 만들고 싶을 때 어떻게 해야할까?
 
 Entropy = KL + (variational) Lower Bound
 
-<img src="https://latex.codecogs.com/svg.latex?\;{\log}p_{\theta}(x^{(i)})=D_{KL}(q_{\phi}(z{\vert}x^{(i)}){\vert}{\vert}p_{\theta}(z{\vert}x ^{(i)}))+\mathcal{L}({\theta},{\phi};x^{(i)})">
+<img src="https://latex.codecogs.com/svg.latex?\;{\log}p_{\theta}(x^{(i)})=D_{KL}(q_{\phi}(z{\vert}x^{(i)}){\vert}{\vert}p_{\theta}(z{\vert}x^{(i)}))+\mathcal{L}({\theta},{\phi};x^{(i)})">
 
 <img src="https://latex.codecogs.com/svg.latex?\;에서\,{\theta},{\phi}">에 대한 <img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}({\theta},{\phi};x^{(i)})"> 의 <img src="https://latex.codecogs.com/svg.latex?\;{\delta}">를 구하고 싶다.
 
@@ -53,18 +53,19 @@ Entropy = KL + (variational) Lower Bound
 
 ### Method
 
-Data point 에 대하여 marginal likelihood 의 lower bound =<img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}({\theta}, {\phi};x^{i})">로 정의한다.
+Data point 에 대하여 marginal likelihood 의 lower bound =<img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}({\theta},{\phi};x^{i})">로 정의한다.
 <img src="https://latex.codecogs.com/svg.latex?\;\log(p(x)){\geq}ELBO">이므로 marginal likelihood를 maximize 하기 위해
 <img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}({\theta},{\phi};x^{i})">를 maximize 한다.
 <img src="https://latex.codecogs.com/svg.latex?\;ELBO=-D_{KL}(q_{\phi}(z|x^{(i)})||p_{\theta}(z))+\mathbb{E}_{q_{\phi}(z|x^{(i)})}[{\log} p_{\theta}(x^{(i)}|z)]"> 로 정의할 때
 
-$$1. \phi \ 에\  대한\ posterior\ distribution\ (Variational\ Inference) \\ 2. \theta\ 에\ 대한\ prior\ distribution\ (Marginal\ likelihood\ Maximize)$$
+1. <img src="https://latex.codecogs.com/svg.latex?\;\phi"> 에 대한 posterior distribution (Variational Inference)
+2. <img src="https://latex.codecogs.com/svg.latex?\;\theta"> 에 대한 prior distribution (Marginal likelihood Maximize)
 
 θ 에 대해서 ELBO를 Maximize 하면 marginal likelihood를 maximize하는 것이고
 
 Φ에 대해서 ELBO를 Maximize 하면 posterior distribution 의 maximize likelihood를 하는 것이다.
 
-$$loss = \mathcal L(\phi, \theta,x) = -\mathbb E_{q_{\phi}(z|x)}[\log p_{\theta}(x|g_{\phi}(z))]+D_{KL}(q_{\phi}(z|x)\|p_{\theta}(z))=-ELBO$$
+loss = <img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}({\phi},{\theta},x)=-\mathbb{E}_{q_{\phi}(z|x)}[{\log}p_{\theta}(x|g_{\phi}(z))]+D_{KL}(q_{\phi}(z|x)\|p_{\theta}(z))=-ELBO">
 
 결국 ELBO 를 maximize 하기 위한 것으로 dual problem 으로 -ELBO를 minimizing 하는 것으로 바꿔 풀 수 있다.
 
@@ -72,4 +73,4 @@ $$loss = \mathcal L(\phi, \theta,x) = -\mathbb E_{q_{\phi}(z|x)}[\log p_{\theta}
 
 만일 p(z|x) 가 Gaussian Distribution 을 따른다고 가정한다면, sampling이 힘들다. 따라서 Reparameter trick을 사용해서 계산을 좀 더 쉽고 mu와 sigma의 loss 를 통해 Encoder 의 학습이 가능하다.
 
-$$z \sim p(z|x)= N(\mu, \sigma^2)\ \ 이고\  \epsilon \sim N(0,1)\ \ 일\ 때,\ z=\mu+\sigma\epsilon\ 로 \ 표현이\ 가능하다.$$
+<img src="https://latex.codecogs.com/svg.latex?\;z{\sim}p(z|x)=N({\mu},{\sigma}^2)"> 이고 <img src="https://latex.codecogs.com/svg.latex?\;{\epsilon}{\sim}N(0,1)"> 일 때,<img src="https://latex.codecogs.com/svg.latex?\;z={\mu}+{\sigma}{\epsilon}"> 로 표현이 가능하다.
