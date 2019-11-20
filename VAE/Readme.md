@@ -56,7 +56,7 @@ Entropy = KL + (variational) Lower Bound
 Data point 에 대하여 marginal likelihood 의 lower bound =<img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}({\theta},{\phi};x^{i})">로 정의한다.
 <img src="https://latex.codecogs.com/svg.latex?\;\log(p(x)){\geq}ELBO">이므로 marginal likelihood를 maximize 하기 위해
 <img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}({\theta},{\phi};x^{i})">를 maximize 한다.
-<img src="https://latex.codecogs.com/svg.latex?\;ELBO=-D_{KL}(q_{\phi}(z|x^{(i)})||p_{\theta}(z))+\mathbb{E}_{q_{\phi}(z|x^{(i)})}[{\log} p_{\theta}(x^{(i)}|z)]"> 로 정의할 때
+<img src="https://latex.codecogs.com/svg.latex?\;ELBO=-D_{KL}(q_{\phi}(z|x^{(i)})||p_{\theta}(z))+\mathbb{E}_{q_{\phi}(z|x^{(i)})}[{\log}p_{\theta}(x^{(i)}|z)]"> 로 정의할 때
 
 1. <img src="https://latex.codecogs.com/svg.latex?\;\phi"> 에 대한 posterior distribution (Variational Inference)
 2. <img src="https://latex.codecogs.com/svg.latex?\;\theta"> 에 대한 prior distribution (Marginal likelihood Maximize)
