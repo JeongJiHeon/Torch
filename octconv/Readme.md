@@ -26,7 +26,8 @@ H-F는 sharp한 shape를 나타내고, L-F는 좀더 blur한 content를 나타�
 High Frequency를 표현해주는 X^H와 Low Frequency를 표현해주는 X^L가 input으로 들어가야 한다.
 결과물로는 High Frequency Y^H, Low Frequency Y^L이 나오게 된다.
 
-$$Y^H = W^{H\rightarrow H}\odot {X^H} + upsample(W^{L\rightarrow H} \odot X^L) \\ Y^L\  = W^{L\rightarrow L} \ \odot X^L \ + \ pooling(W^{H\rightarrow L}\odot X^H)\ \ $$
+<img src="https://latex.codecogs.com/svg.latex?\;Y^H=W^{H{\rightarrow}H}\odot{X^H}+upsample(W^{L{\rightarrow}H}\odot{X^L})">
+<img src="https://latex.codecogs.com/svg.latex?\;Y^L=W^{L{\rightarrow}L}\odot{X^L}+pooling(W^{H{\rightarrow}L}\odot{X^H})">
 
 ## Performence
 
