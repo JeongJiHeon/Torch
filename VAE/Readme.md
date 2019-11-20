@@ -47,7 +47,7 @@ Entropy = KL + (variational) Lower Bound
 
 <img src="https://latex.codecogs.com/svg.latex?\;{\log}p_{\theta}(x^{(i)})=D_{KL}(q_{\phi}(z{\vert}x^{(i)}){\vert}{\vert}p_{\theta}(z{\vert}x ^{(i)}))+\mathcal{L}({\theta},{\phi};x^{(i)})">
 
-<img src="https://latex.codecogs.com/svg.latex?\;에서\,\theta,{\phi}에\,대한\,\mathcal{L}({\theta},{\phi};x^{(i)})의\,delta를\,구하고\,싶다.">
+<img src="https://latex.codecogs.com/svg.latex?\;에서\,{\theta},{\phi}에\,대한\,\mathcal{L}({\theta},{\phi};x^{(i)})의{\delta}를\,구하고\,싶다.">
 
 $$      그러나\ \theta \ 에\ 대한\  delta 는\  high\ variance를\ 갖는다$$
 
