@@ -39,7 +39,7 @@ Generative하는 모델을 만들고 싶을 때 어떻게 해야할까?
 2. z가 주어졌을 때 x를 추정하는 posterior inference 할 것이다.
 3. x의 marginal likelihood를 inference 할 것이다.
 
-<img src="https://latex.codecogs.com/svg.latex?\;{\Rightarrow}\tilde{z}{\sim}q_{\phi}(z|x)를\,정의해서\,z\,에\,대한\,posterior\,inference\,할\,것\,이다.">
+<img src="https://latex.codecogs.com/svg.latex?\;{\Rightarrow}\tilde{z}{\sim}q_{\phi}(z|x)"> 를 정의해서 z 에 대한 posterior inference 할 것 이다.
 
 ### Varational Bound
 
