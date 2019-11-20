@@ -6,7 +6,7 @@
 
 ## Introduce
 
-![](Untitled-2c5fe37e-ac51-4b44-b7fb-ea3dd3eaf766.png)
+<p align="center"><img width="100%"src="https://github.com/JeongJiHeon/Torch/blob/master/octconv/image/1.png">
 
 이 논문의 Motivation 이 되었다고 소개하는 High Frequency, Low Frequency에 관한 내용이다.
 
@@ -18,7 +18,7 @@ H-F는 sharp한 shape를 나타내고, L-F는 좀더 blur한 content를 나타�
 
 ## Method
 
-![](_2019-11-19_01-9639f835-f0aa-4c12-bb40-06d72276f71a.37.40.png)
+<p align="center"><img width="100%"src="https://github.com/JeongJiHeon/Torch/blob/master/octconv/image/2.png">
 
 실제로 OctConv 연산을 하기 위해 2개의 input이 필요하고 2개의 output이 나오게 된다.
 ( 처음 Layer와 마지막 Layer을 제외하고 )
@@ -31,13 +31,13 @@ High Frequency를 표현해주는 X^H와 Low Frequency를 표현해주는 X^L가
 
 ## Performence
 
-![](Untitled-e235b78f-9558-4b14-bf87-d3f63658bf26.png)
+<p align="center"><img width="100%"src="https://github.com/JeongJiHeon/Torch/blob/master/octconv/image/3.png">
 
 논문에서는 에 의해 감소되는 연산량을 제시하고 있다.
 
 Memory 연산량은 으로 줄었다.
 
-![](Untitled-f6e20ca3-3df9-455c-b50b-e3c3dea87ba8.png)
+<p align="center"><img width="100%"src="https://github.com/JeongJiHeon/Torch/blob/master/octconv/image/4.png">
 
 Memory 연산량은 1-3a/4 으로 줄었다.
 
