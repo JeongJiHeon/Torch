@@ -47,13 +47,16 @@ Entropy = KL + (variational) Lower Bound
 
 <img src="https://latex.codecogs.com/svg.latex?\;{\log}p_{\theta}(x^{(i)})=D_{KL}(q_{\phi}(z{\vert}x^{(i)}){\vert}{\vert}p_{\theta}(z{\vert}x ^{(i)}))+\mathcal{L}({\theta},{\phi};x^{(i)})">
 
-<img src="https://latex.codecogs.com/svg.latex?\;에서\,{\theta},{\phi}에\,대한\,\mathcal{L}({\theta},{\phi};x^{(i)})의{\delta}를\,구하고\,싶다.">
+<img src="https://latex.codecogs.com/svg.latex?\;에서\,{\theta},{\phi}">에 대한 <img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}({\theta},{\phi};x^{(i)})"> 의 <img src="https://latex.codecogs.com/svg.latex?\;{\delta}">를 구하고 싶다.
 
-$$      그러나\ \theta \ 에\ 대한\  delta 는\  high\ variance를\ 갖는다$$
+그러나 <img src="https://latex.codecogs.com/svg.latex?\;\theta"> 에 대한 delta 는 high variance를 갖는다
 
 ### Method
 
-$$ Data\ point\ 에\ 대하여\ marginal\ likelihood\ 의\ lower\ bound\ =\ \mathcal{L}(\theta, \phi; x^{i})\ 로\ 정의한다.\\   \log(p(x))\geq ELBO\ 이므로\ marginal\ likelihood를\ maximize\ 하기\ 위해\\ \mathcal{L}(\theta, \phi; x^{i})를\ maximize\ 한다.\\ELBO\ =\ -D_{KL}(q_{\phi}(z|x^{(i)})||p_{\theta}(z)) +\mathbb{E}_{q_{\phi}(z|x^{(i)})}[\log p_{\theta}(x^{(i)}|z)]\ 로서\ 정의할\ 때,$$
+Data point 에 대하여 marginal likelihood 의 lower bound =<img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}({\theta}, {\phi};x^{i})">로 정의한다.
+<img src="https://latex.codecogs.com/svg.latex?\;\log(p(x)){\geq}ELBO">이므로 marginal likelihood를 maximize 하기 위해
+<img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}({\theta},{\phi};x^{i})">를 maximize 한다.
+<img src="https://latex.codecogs.com/svg.latex?\;ELBO=-D_{KL}(q_{\phi}(z|x^{(i)})||p_{\theta}(z))+\mathbb{E}_{q_{\phi}(z|x^{(i)})}[{\log} p_{\theta}(x^{(i)}|z)]"> 로 정의할 때
 
 $$1. \phi \ 에\  대한\ posterior\ distribution\ (Variational\ Inference) \\ 2. \theta\ 에\ 대한\ prior\ distribution\ (Marginal\ likelihood\ Maximize)$$
 
