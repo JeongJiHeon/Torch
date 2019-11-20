@@ -1,6 +1,7 @@
 # Variational AutoEncoder
 
 논문 : Auto-Encoding Variational Bayes
+
 저자 : Diederik P.Kingma ( Amsterdam Univ. ), Max Welling ( Amsterdam Univ. )
 
 # Introduce
