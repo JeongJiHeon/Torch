@@ -27,7 +27,8 @@ Data를 paired하게 설정한 것이 아니라, Generator의 Architecture가 pa
 
 를 만족하는 Generator G, F가 존재한다고 가정하자. 그리고 우리의 목표는 G와 F 가 inverse 관계가 되도록 만드는 것이다. 따라서
 
-<img src="https://latex.codecogs.com/svg.latex?\;G(F(y)){\approx}y\\F(G(x)){\approx}x">
+<img src="https://latex.codecogs.com/svg.latex?\;G(F(y)){\approx}y">
+<img src="https://latex.codecogs.com/svg.latex?\;F(G(x)){\approx}x">
 
 를 만족해야하고 이것을 새로운 Loss 로써 정의할 것이다 ( Cycle Loss )
 
@@ -39,7 +40,7 @@ Data를 paired하게 설정한 것이 아니라, Generator의 Architecture가 pa
 2번째 모델을 (Gy, Dy) 으로 정의 하자.
 
 <img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}_{GAN}(G_y,D_y,X,Y)=\mathbb{E}_{y{\sim}dataY}[{\log}(D_y(y)]+\mathbb{E}_{x{\sim}dataX}[1-{\log}(D_y(G_y(x))]">
-<img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}_{GAN}(G_x,D_x,Y,X)=\mathbb{E|_{x{\sim}dataX}[\log(D_x(x)]+\mathbb{E}_{y{\sim}dataY}[1-\log(D_x(G_x(y))]">
+<img src="https://latex.codecogs.com/svg.latex?\;\mathcal{L}_{GAN}(G_x,D_x,Y,X)=\mathbb{E}_{x{\sim}dataX}[\log(D_x(x)]+\mathbb{E}_{y{\sim}dataY}[1-\log(D_x(G_x(y))]">
 
 기본적인 GAN Loss을 정의하고, reconstruction 을 위한 새로운 Loss를 정의하자.
 
