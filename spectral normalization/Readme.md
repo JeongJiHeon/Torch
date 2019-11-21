@@ -61,3 +61,6 @@ Loss Function 에서는 hinge loss 를 사용했다. 이것이 FID(Frechet Incep
 <img src="https://latex.codecogs.com/svg.latex?\;-\lambda\mathbb{E}_{\hat{x}{\sim}p_{\hat{x}}}[(\|\bigtriangledown_{\hat{x}}D({\hat{x}})\|2-1)^2]">
 
 또한, WGAN-GP 에서 제시됐던 regularzation term에 Gradient penalty 를 사용한다. 이것은 Resnet기반으로 하는 GAN 에서 Impressive한 퍼포먼스를 보여준다고 한다. ( 논문 피셜 )
+
+
+그림 출처 : http://sanghyeonna.blogspot.com/2018/08/spectral-normalization-part1.html
