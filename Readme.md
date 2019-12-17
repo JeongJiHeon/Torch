@@ -36,25 +36,30 @@ It doesn't look good in a small model.
 * [cGAN][https://arxiv.org/pdf/1411.1784.pdf]
 * [pix2pix][https://arxiv.org/pdf/1611.07004.pdf]
 * [CycleGAN][https://arxiv.org/pdf/1703.10593.pdf]
+* [WGAN][https://arxiv.org/pdf/1701.07875.pdf]
+* [WGAN-GP][https://arxiv.org/pdf/1704.00028]
 
 
-#### DCGAN
+
+
+
+#### WGAN-GP
 
 <div>
 
-<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/dcgan.png">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/dcgan.gif">
-
+<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/wgan-gp.gif">
 
 </div>
 
 
-#### Conditional GAN
+
+
+#### CycleGAN
 
 <div>
 
-<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cgan.png">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cgan.gif">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cycleGAN.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cycleGAN2.png">
 
 
 </div>
@@ -69,18 +74,25 @@ It doesn't look good in a small model.
 
 </div>
 
-
-#### CycleGAN
+#### Conditional GAN
 
 <div>
 
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cycleGAN.png">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cycleGAN2.png">
+<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cgan.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cgan.gif">
 
 
 </div>
 
+#### DCGAN
 
+<div>
+
+<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/dcgan.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/dcgan.gif">
+
+
+</div>
 
 
 ## AutoEncoder (AE)
