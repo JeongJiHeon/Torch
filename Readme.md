@@ -13,9 +13,9 @@
 data = STL10
 
 
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/loss.jpg">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/accuracy.jpg">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/time.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/loss_avgpool.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/accuracy_avgpool.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/time_avgpool.jpg">
 
 data = CIFAR10
 
