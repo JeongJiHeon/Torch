@@ -17,7 +17,7 @@ class DCGAN(object):
     def load_dataset(self, root, batch_size = 64, data = 'cifar10'):
         self.dataloader = Public_Dataloader(root = root, batch_size = batch_size, data = data)
     
-    def build_model(self, lr, Epoch, loss = 'BCELoss', optim = 'Adam', betas = (0.5, 0.999)):
+    def build_model(self, lr, Epoch, loss = 'WGANLoss', optim = 'Adam', betas = (0.5, 0.999)):
         
         self.Epoch = Epoch
         #### Build Model ####
@@ -76,7 +76,7 @@ class DCGAN(object):
                 real_D = self.Discriminator(real)
                 fake_D = self.Discriminator(fake)
                       
-                lossD = self.criterion(real_D, torch.ones(real_D.shape).to(self.device)) + self.criterion(fake_D, torch.zeros(fake_D.shape).to(self.device))
+                lossD = self.criterion(real_D, torch.ones(real_D.shape).to(self.device)) + self.criterion(fake_D, -torch.ones(fake_D.shape).to(self.device))
                 lossD.backward(retain_graph = True)
                 self.optimD.step()
                 
