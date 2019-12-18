@@ -6,16 +6,16 @@
 
 <div>
 
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/stl10_loss_avg_pool_nearest.jpg">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/stl10_accuracy_avg_pool_nearest.jpg">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/stl10_time_avg_pool_nearest.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/stl10_loss_avg_pool_nearest.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/stl10_accuracy_avg_pool_nearest.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/stl10_time_avg_pool_nearest.jpg">
 
 data = STL10
 
 
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/loss.jpg">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/accuracy.jpg">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/time.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/loss.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/accuracy.jpg">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/time.jpg">
 
 data = CIFAR10
 
@@ -47,7 +47,7 @@ It doesn't look good in a small model.
 
 <div>
 
-<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/wgan-gp.gif">
+<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/wgan-gp.gif">
 
 </div>
 
@@ -58,8 +58,8 @@ It doesn't look good in a small model.
 
 <div>
 
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cycleGAN.png">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cycleGAN2.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/cycleGAN.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/cycleGAN2.png">
 
 
 </div>
@@ -69,7 +69,7 @@ It doesn't look good in a small model.
 
 <div>
 
-<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/pix2pix.jpg">
+<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/pix2pix.jpg">
 
 
 </div>
@@ -78,8 +78,8 @@ It doesn't look good in a small model.
 
 <div>
 
-<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cgan.png">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/cgan.gif">
+<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/cgan.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/cgan.gif">
 
 
 </div>
@@ -88,8 +88,8 @@ It doesn't look good in a small model.
 
 <div>
 
-<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/dcgan.png">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/dcgan.gif">
+<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/dcgan.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/dcgan.gif">
 
 
 </div>
@@ -103,11 +103,11 @@ It doesn't look good in a small model.
 
 <div>
 
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/vae_real.png">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/vae_noise.png">
-<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/vae_output.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/vae_real.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/vae_noise.png">
+<img width="250" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/vae_output.png">
 
-<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/Image/VAE.gif">
+<img width="500" src="https://github.com/JeongJiHeon/Torch/blob/master/result_Image/VAE.gif">
 
 
 </div>
