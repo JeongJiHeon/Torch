@@ -34,7 +34,7 @@ Data를 paired하게 설정한 것이 아니라, Generator의 Architecture가 pa
 
 ## Method
 
-<p align="center"><img width="100%"src="https://github.com/JeongJiHeon/Torch/blob/master/cyclegan/image/1.png">
+<p align="center"><img width="100%"src="https://github.com/JeongJiHeon/Torch/blob/master/[4] CycleGAN/image/1.png">
 
 1번째 모델을 (Gx, Dx) 으로 정의 하고,
 2번째 모델을 (Gy, Dy) 으로 정의 하자.
