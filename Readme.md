@@ -1,6 +1,4 @@
 
-[Notion][https://www.notion.so/Deep-Learning-16ea92660a9f4ecebd415ce5a4db82f2]
-
 # Octave Convolution
 * [OctConv][https://arxiv.org/abs/1904.05049]
 
